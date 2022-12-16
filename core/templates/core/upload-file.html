@@ -48,6 +48,7 @@
             <th>Title</th>
             <th>File Path</th>
             <th>Upload Date & Time</th>
+            <th>Download</th>
         </tr>
         {% for file in files %}
             <tr>
@@ -55,6 +56,8 @@
                 <td>{{ file.title }}</td>
                 <td>{{ file.uploadedFile.url }}</td>
                 <td>{{ file.dateTimeOfUpload }}</td>
+                <td><a href="{{ file.uploadedFile.url }}" download="{{ file.uploadedFile.name }}">ダウンロード</a>
+                </td>
             </tr>
         {% endfor %}
     </table>
