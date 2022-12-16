@@ -4,6 +4,6 @@ from django.db import models
 
 #アップロードされたファイルの詳細
 class Document(models.Model):
-    title = models.CharField(max_length = 200)
-    uploadedFile = models.FileField(upload_to = "Uploaded Files/")
+    title = models.CharField(max_length = 10)
+    uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
