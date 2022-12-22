@@ -2,3 +2,8 @@
 自分なりにカスタマイズしてお使いください。
 また、アップロードできなかったりファイルが表示されなくなった場合はtable(core_document)が消えてる可能性が高いので
 その場合は[core-documentが消えた場合.txt]を参照してください。
+
+あとから分かったんですがmakemigraitonsをしてからじゃないと上手く動かない場合があるようです。実は当たり前なのかもしれない。
+元々migrateだけでやってたんですけどmysqlのフォルダとDocker削除したときcore_documentの再生成ができなくなってしまって、
+悩んだ末にmakemigrationsをしたら解決しました。　python manage.py makemigrations core  です。
+逆にこれが当たり前だとしたらなんで今までmigrateだけで動いてたん...？
