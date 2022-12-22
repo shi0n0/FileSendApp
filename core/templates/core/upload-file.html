@@ -5,21 +5,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Django File Upload</title>
+    <title>うpろだ</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
         * {
             font-family: "Roboto";
+            margin: 0;
         }
 
         body {
-            background-color: #F5F5F5;
+            background-color:#F5F5F5;
+            padding: 25px 20px;
         }
 
-        form {
-            background-color: #FFFFFF;
-            padding: 25px;
+
+        /*ヘッダー類*/
+        .header{
+            padding: 20px;
+            background-color: #FFF;
+            box-shadow: 5px 5px 10px rgba(100, 100, 100, 0.5);
+            margin-bottom: 20px;
+        }
+        .frame1{
+            display: flex;
+        }
+        .title{
+            font-size: xx-large;
+            margin-right: 15%;
+        }
+        .caution{
+            background-color: #e0e0e0;
+        }
+
+        /*メイン類*/
+        .main{
+            background-color: #FFF;
+            box-shadow: 5px 5px 10px rgba(100, 100, 100, 0.5);
         }
 
         table {
@@ -31,17 +53,78 @@
         }
 
         table tr td {
-            padding-top: 15px;            
+            padding-top: 15px;        
         }
+        
+        table tr th {
+            padding: 10px;
+            background-color: rgb(200, 200, 200);
+        }
+
+        form{
+            display: flex;
+        }
+
+        input{
+            padding: 5px;
+        }
+
+        .button{
+            display: block;
+            color:inherit;
+            text-decoration: none;
+            border: 1px solid #000;
+            border-radius: 0;
+            background: #fff;
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.5);
+        }
+
+        .button:hover{
+            color: #000;
+            transform: translate(2px,2px);
+            box-shadow:none
+        }
+
     </style>
 </head>
 <body>
-    <form action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
-        <input type="text" name="fileTitle" placeholder="Enter a title">
+<div class="header">
+    <div class="frame1">
+        <p class="title">ファイルアップローダ：開発中版</p>
+        <p class="caution">＜注意事項＞<br>容量が多いとアップロードに時間がかかります。<br>途中で切断するとエラーの原因になりますのでご注意ください。<br>なお、アップロードにおいて起きた事象や問題につきましては一切の責任を<br>アップロード者自身にあるものとしますので、繰り返しご注意ください。</p>
+    </div>
+    
+    <div class="upload">
+    <form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
+
+        <script>
+            window.addEventListener('DOMContentLoaded', ()=>{
+            document.querySelector('#file-input').addEventListener('submit',e=>{
+                var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
+                if(files.length==0){
+                e.preventDefault();
+                alert('ファイルが選択されてないよ');
+                }
+            });
+        });
+        </script>
+
+        <input type="text" name="fileTitle" placeholder="タイトルを入力(任意)">
+        <label>
         <input type="file" name="uploadedFile">
+        </label>
         {% csrf_token %}
-        <input type="submit" value="Upload">
+        <input class="button" type="submit" value="アップロード">
     </form>
+    </div>
+
+    </div>
+</div>
+
+<div class="main">
     <table>
         <tr>
             <th>ID</th>
@@ -56,10 +139,12 @@
                 <td>{{ file.title }}</td>
                 <td>{{ file.uploadedFile.url }}</td>
                 <td>{{ file.dateTimeOfUpload }}</td>
-                <td><a href="{{ file.uploadedFile.url }}" download="{{ file.uploadedFile.name }}">ダウンロード</a>
+                <td><a class="button" href="{{ file.uploadedFile.url }}" download="{{ file.uploadedFile.name }}">PUSH</a>
                 </td>
             </tr>
         {% endfor %}
     </table>
+</div>
+
 </body>
 </html>
