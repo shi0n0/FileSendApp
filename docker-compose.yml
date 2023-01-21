@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  FileSendDB:
+    image: "mysql:8.0"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=filesenddb"
+      - "MYSQL_USER=filesenduser"
+      - "MYSQL_PASSWORD=filesendpassword"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysqldata:/var/lib/mysql

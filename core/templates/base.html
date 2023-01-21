@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://kit.fontawesome.com/7244181866.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&family=Roboto&display=swap" rel="stylesheet">
+    <title>うpろだ</title>
+</head>
+<body>
+    <div class="sidebar">
+        <nav>
+            <ul><a>
+                <li class="search sidebar-style ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>検索</span>
+                </li>
+                </a>
+                <a href="/mypage">
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-user"></i>
+                    <span>アカウント</span>
+                </li>
+                </a>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>設定</span>
+                </li>
+            </ul>
+        </nav>
+        <div class="spacer"></div>
+        <div class="line"></div>
+        <nav class="sidebar-under">
+            <ul>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>ご連絡</span>
+                </li>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>アップデート</span>
+                </li>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>ログアウト</span>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="content">
+
+    </div>
+</body>
+</html>

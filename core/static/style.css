@@ -1,0 +1,65 @@
+html{
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold
+}
+
+body{
+    display: flex;
+}
+
+span{
+    margin: 10px;
+}
+
+a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+.sidebar{
+    width: 18%;
+    background-color: white;
+    padding: 3px;
+    padding-top: 5px;
+}
+.sidebar-style{
+    margin: 0 auto;
+    padding: 10px;
+    width: 95%;
+}
+.search{
+    border: solid;
+    border-radius: 5px;
+}
+.sidebar-child{
+    margin-top: 10px;
+    border-radius: 5px;
+}
+.sidebar-child:hover{
+    background-color: rgba(128, 128, 128, 0.2);
+}
+.spacer{
+    width: 95%;
+    height: 58vh;
+}
+.line{
+    border: solid 0.25px;
+}
+
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: blue;
+    width: 82%;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: white;
+}
+.catchcopy{
+    font-size: 1.5em;
+}
+.name{
+    font-family: 'Roboto', sans-serif;
+}

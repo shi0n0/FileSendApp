@@ -1,0 +1,3 @@
+core_documentというtableがいきなり消えた場合は、dockerを一旦 docker-compose down　でおとして
+ docker-compose up -d　で立ち上げ直すと再生成されます。
+ IDを一からにしたい場合はCore_Documentを初期化しないといけないので、削除するかコマンドでデータを初期化してください。
