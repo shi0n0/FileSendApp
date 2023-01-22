@@ -9,10 +9,12 @@ from django.contrib.auth.validators import UnicodeUsernameValidator
 # Create your models here.
 
 #アップロードされたファイルの詳細
+
 class Document(models.Model):
     title = models.CharField(max_length = 30)
     uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
+    content_type = models.CharField(max_length=255)
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)

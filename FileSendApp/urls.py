@@ -23,4 +23,7 @@ urlpatterns = [
     path('register', include('core.urls' , namespace='register')),
     path('login', include('core.urls' , namespace='login')),
     path('logout', include('core.urls' , namespace='logout')),
+    path('base', include('core.urls' , namespace='base')),
+    path('search', include('core.urls' , namespace='search')),
+    path('<int:id>', include('core.urls' , namespace='detail'))
 ]

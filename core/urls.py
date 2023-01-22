@@ -12,7 +12,9 @@ urlpatterns = [
     path("register", views.AccountCreateView.as_view(), name="register"),
     path("login", views.AccountLoginView.as_view(), name="login"),
     path("logout", views.AccountLogoutView.as_view(), name="logout"),
-    path("base", views.base, name='base')
+    path("base", views.base, name='base'),
+    path("search", views.SearchView.as_view(), name="search"),
+    path("<int:id>", views.SearchView.id_view, name="detail")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -16,22 +16,68 @@
 <body>
     <div class="sidebar">
         <nav>
-            <ul><a>
-                <li class="search sidebar-style ">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <span>検索</span>
+            <ul>
+                <li>
+                    <div class="card my-4">
+                        <h5 class="card-header">検索</h5>
+                        <div class="card-body">
+                            <form method="get" class="input-group" action="search" required>
+                                <input type="text" name="keyword" class="form-control" placeholder="ファイルを検索" required>
+                                <button class="btn btn-warning ml-2" type="submit" required>検索</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
                 </li>
                 </a>
+
+                <a href="/">
+                    <li class="sidebar-child sidebar-style">
+                        <i class="fa-solid fa-home"></i>
+                        <span>ホーム</span>
+                    </li>
+                </a>
+
                 <a href="/mypage">
                 <li class="sidebar-child sidebar-style">
                     <i class="fa-solid fa-user"></i>
                     <span>アカウント</span>
                 </li>
                 </a>
+
                 <li class="sidebar-child sidebar-style">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>設定</span>
+                    <span>アップロード</span>
+                    <form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
+
+                        <script>
+                            window.addEventListener('DOMContentLoaded', ()=>{
+                        document.querySelector('#file-input').addEventListener('submit',e=>{
+                            var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
+                            if(files.length==0){
+                            e.preventDefault();
+                            alert('ファイルが選択されてないよ');
+                            }
+                        });
+                    });
+                        </script>
+                        
+                        <div class="input-1">
+                            <input class="file-title" type="text" name="fileTitle" placeholder="タイトルを入力(任意)" maxlength="30">
+                        </div>
+
+                        <span>選択</span>
+                        <div class="input-2">
+                            <label>
+                                <input class="none" size="80" type="file" name="uploadedFile">
+                            </label>
+                            {% csrf_token %}
+                            <input class="none" type="submit" value="アップロード">
+                        </div>
+
+                    </form>
                 </li>
+
             </ul>
         </nav>
         <div class="spacer"></div>
@@ -39,9 +85,15 @@
         <nav class="sidebar-under">
             <ul>
                 <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>設定</span>
+                </li>
+                <a href="https://twitter.com/Twitter">
+                <li class="sidebar-child sidebar-style">
                     <i class="fa-solid fa-envelope"></i>
                     <span>ご連絡</span>
                 </li>
+                </a>
                 <li class="sidebar-child sidebar-style">
                     <i class="fa-solid fa-bell"></i>
                     <span>アップデート</span>
@@ -57,7 +109,24 @@
     </div>
     
     <div class="content">
+        <!-- 検索結果の表示 -->
+        {% if keyword %}
+            <h4 class="mb-4">「{{ keyword }}の検索結果」</h4>
+        {% endif %}
 
+        {% for post in post_data %}
+        <div class="result">
+            <a href="{{post.id}}">
+                <p>{{ post.id }}</p>
+                <p>{{ post.title }}</p>
+                <p>{{ post.file_name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+        
+        <!-- 検索結果の表示終了 -->
+        {% block content %}
+        {% endblock %}
     </div>
 </body>
 </html>

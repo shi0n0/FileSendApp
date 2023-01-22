@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="detail">
+    {{object.id}}
+    {{object.file_name}}
+    {{object.dateTimeOfUpload}}
+
+    {% if file_type == 'image' %}
+    <img src="media/{{ object.uploadedFile }}" alt="{{ object.title }}">
+
+    {% elif file_type == 'video' %}
+    <video class="video-detail" src="media/{{ object.uploadedFile }}" controls></video>
+    {% endif %}
+</div>
+{% endblock %}

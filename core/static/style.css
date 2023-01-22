@@ -1,10 +1,11 @@
 html{
     font-family: 'Roboto', sans-serif;
-    font-weight: bold
+    font-weight: bold;
 }
 
 body{
     display: flex;
+    width: 100%;
 }
 
 span{
@@ -20,7 +21,10 @@ a{
     width: 18%;
     background-color: white;
     padding: 3px;
-    padding-top: 5px;
+    padding-top: 5px
+}
+.sidebar-under{
+    position: sticky;
 }
 .sidebar-style{
     margin: 0 auto;
@@ -40,7 +44,7 @@ a{
 }
 .spacer{
     width: 95%;
-    height: 58vh;
+    height: 32.5vh;
 }
 .line{
     border: solid 0.25px;
@@ -52,14 +56,39 @@ a{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: blue;
-    width: 82%;
+    background-color:rgba(128, 128, 128, 0.216);
     font-family: 'Noto Sans JP', sans-serif;
-    color: white;
+    color: black;
+    width: 100%;
+    overflow-y: scroll;
 }
+
 .catchcopy{
     font-size: 1.5em;
 }
 .name{
     font-family: 'Roboto', sans-serif;
+}
+
+.account-main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 検索結果 */
+.result{
+    width: 70%;
+    display: flex;
+
+}
+
+.result:hover{
+    background-color: rgba(128, 128, 128, 0.2);
+}
+.detail{
+    width: fit-content;
+}
+.video-detail{
+    width: 100%;
 }

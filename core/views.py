@@ -7,12 +7,25 @@ from django.views.generic import View
 from core.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
+from django.contrib import messages
+from django.db.models import Q
+from .models import Document
+from django.shortcuts import render,get_object_or_404
+from django.http import HttpResponse
+from django.db.models import Q
+from functools import reduce
+from operator import and_
+
 # アップロードとデリート
 def mypage (request):
     return render(request, 'account/mypage.html')
 
 def base (request):
     return render(request, 'base.html')
+
+def detail(request, id):
+    detail = Document.objects.get(id=id)
+    return render(request, 'core/detail.html', {'detail': detail})
 
 def uploadFile(request):
     if request.method == "POST":
@@ -80,4 +93,31 @@ class AccountLogoutView(LogoutView):
 
     def get_default_redirect_url(self):
         """ログアウトに成功した時に飛ばされるURL"""
-        return "/"
+        return "/mypage"
+    
+
+    
+class SearchView(View):
+    def get(self, request, *args, **kwargs):
+        post_data = Document.objects.all()
+        keyword = request.GET.get('keyword')
+
+        if keyword:
+            query_list = keyword.split()
+            query = Q()
+            for q in query_list:
+                query &= Q(title__exact=keyword)
+            post_data = post_data.filter(query)
+
+        return render(request, 'base.html', {
+            'keyword': keyword,
+            'post_data': post_data
+        })
+    def id_view(request, id):
+        object = Document.objects.get(id=id)
+        file_type = None
+        if object.content_type.startswith('image'):
+            file_type = 'image'
+        elif object.content_type.startswith('video'):
+            file_type = 'video'
+        return render(request, 'core/detail.html', {'file_type': file_type,'object': object})
