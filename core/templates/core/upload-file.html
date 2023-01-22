@@ -6,6 +6,7 @@
     <tr>
         <th class="ID">ID</th>
         <th class="Title">Title</th>
+        <th class="cotent_type">種別</th>
         <th class="FilePath">FilePath</th>
         <th class="Date">Date&Time</th>
         <th class="Download">Download</th>
@@ -15,6 +16,7 @@
         <tr>
             <td><p>{{ file.id }}</p></td>
             <td><p>{{ file.title }}</p></td>
+            <td><p>{{ file.cotent_type }}</p></td>
             <td><p>{{ file.file_name }}</p></td>
             <td><p>{{ file.dateTimeOfUpload }}</p></td>
             <td><a class="button" href="{{ file.uploadedFile.url }}" download="{{ file.uploadedFile.name }}">PUSH</a></td>
