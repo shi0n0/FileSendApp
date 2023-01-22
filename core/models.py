@@ -14,10 +14,7 @@ class Document(models.Model):
     title = models.CharField(max_length = 30)
     uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
-    content_type = models.CharField(max_length=255, blank=True, null=True)
-    def save(self, *args, **kwargs):
-        self.content_type = self.uploadedFile.content_type
-        super().save(*args, **kwargs)
+    content_type = models.CharField(max_length=255,default="")
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
