@@ -32,11 +32,13 @@ def uploadFile(request):
         #form,dataの取得
         fileTitle = request.POST["fileTitle"]
         uploadedFile = request.FILES["uploadedFile"]
+        content_type = request.FILES["uploadedFile"].content_type
 
         # データベース保存
         document = models.Document(
             title = fileTitle,
             uploadedFile = uploadedFile,
+            content_type = uploadedFile.content_type
         )
         document.save()
         print("ファイルをアップロードしました")
