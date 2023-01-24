@@ -25,5 +25,6 @@ urlpatterns = [
     path('logout', include('core.urls' , namespace='logout')),
     path('base', include('core.urls' , namespace='base')),
     path('search', include('core.urls' , namespace='search')),
-    path('<int:id>', include('core.urls' , namespace='detail'))
+    path('<int:id>', include('core.urls' , namespace='detail')),
+    path('edit_profile/', include('core.urls' , namespace='edit_profile')),
 ]

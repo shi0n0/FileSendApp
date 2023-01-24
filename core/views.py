@@ -15,6 +15,8 @@ from django.http import HttpResponse
 from django.db.models import Q
 from functools import reduce
 from operator import and_
+from django.contrib.auth.decorators import login_required
+from .forms import UserForm
 
 # アップロードとデリート
 def mypage (request):
@@ -126,4 +128,13 @@ class SearchView(View):
             file_type = 'text'
         return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type})
     
-
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('/mypage')
+    else:
+        form = UserForm(instance=request.user)
+    return render(request, 'account/edit_profile.html', {'form': form})

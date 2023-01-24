@@ -51,6 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_staff = models.BooleanField(_("staff status"), default=False)
     is_active = models.BooleanField(_("active"), default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
+    bio = models.TextField(_("bio"), null=False, blank=True)
 
     objects = UserManager()
     USERNAME_FIELD = "email"

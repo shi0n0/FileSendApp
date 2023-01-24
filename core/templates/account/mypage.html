@@ -2,9 +2,12 @@
 
 {% block content %}
 <div class="account-main">
-    <i class="fa-solid fa-user fa-5x"></i>
+    <i class="fa-solid fa-user fa-4x"></i>
     {% if user.is_authenticated %}
-        <h2>{{ user.username }} さん</h2>
+        <p class="mypage-name">{{ user.username }} さん</p>
+        <div class="line"></div>
+        <p class="mypage-bio">{{ user.bio }}</p>
+        <a class="edit-profile-button" href="/edit_profile">プロフィールを編集</a>
     {% else %}
         名無しさん
         <p>ログインは<a style="color: rgb(6, 172, 255);" href="{% url 'core:login' %}">こちら</a></p>
