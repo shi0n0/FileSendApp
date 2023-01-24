@@ -2,15 +2,23 @@
 
 {% block content %}
 <div class="detail">
-    {{object.id}}
-    {{object.file_name}}
-    {{object.dateTimeOfUpload}}
+
+    {{detail.id}}
+    {{detail.file_name}}
+    {{detail.dateTimeOfUpload}}
 
     {% if file_type == 'image' %}
-    <img src="media/{{ object.uploadedFile }}" alt="{{ object.title }}">
+    <img src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}">
 
     {% elif file_type == 'video' %}
-    <video class="video-detail" src="media/{{ object.uploadedFile }}" controls></video>
+    <video class="video-detail" src="media/{{ detail.uploadedFile }}" controls></video>
+
+    {% elif file_type == 'text' %}
+    <div class="text-detail">
+        {{ detail.uploadedFile.read.decode}}
+    </div>
     {% endif %}
+
+
 </div>
-{% endblock %}
+    {% endblock %}

@@ -116,10 +116,14 @@ class SearchView(View):
             'post_data': post_data
         })
     def id_view(request, id):
-        object = Document.objects.get(id=id)
-        file_type = None
-        if object.content_type.startswith('image'):
+        detail = Document.objects.get(id=id)
+        file_type = detail.content_type.split('/')[0]
+        if detail.content_type.startswith('image'):
             file_type = 'image'
-        elif object.content_type.startswith('video'):
+        elif detail.content_type.startswith('video'):
             file_type = 'video'
-        return render(request, 'core/detail.html', {'file_type': file_type,'object': object})
+        elif detail.content_type.startswith('text/plain'):
+            file_type = 'text'
+        return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type})
+    
+

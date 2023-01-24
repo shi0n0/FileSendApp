@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-xpig34(1u8d#%!y-ey^66kni8p(f4cyp*uc&l3x!yk4++-ta)@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1","10.22.1.132"]
+ALLOWED_HOSTS = ["127.0.0.1","10.22.1.132","10.22.1.97"]
 
 
 # Application definition
@@ -153,7 +153,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #MEDIAFILE
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 
 #リダイレクト先
 LOGIN_REDIRECT_URL = "/mypage"
