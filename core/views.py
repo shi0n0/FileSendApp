@@ -17,6 +17,8 @@ from functools import reduce
 from operator import and_
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
+from .forms import LikeForm, DislikeForm
+from .models import Like, Dislike
 
 # アップロードとデリート
 def mypage (request):
@@ -138,3 +140,31 @@ def edit_profile(request):
     else:
         form = UserForm(instance=request.user)
     return render(request, 'account/edit_profile.html', {'form': form})
+
+
+def like(request):
+    if request.method == 'POST':
+        form = LikeForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_like = Like(content=form.cleaned_data['content'], user=request.user)
+            new_like.save()
+            Dislike.objects.filter(content=form.cleaned_data['content'],user=request.user).delete()
+            return redirect('/mypage')
+    else:
+        form = LikeForm()
+    return render(request, 'like.html', {'form': form})
+
+def dislike(request):
+    if request.method == 'POST':
+        form = DislikeForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_dislike = Dislike(content=form.cleaned_data['content'], user=request.user)
+            new_dislike.save()
+            Like.objects.filter(content=form.cleaned_data['content'],user=request.user).delete()
+            return redirect('/mypage')
+    else:
+        form = DislikeForm()
+    return render(request, 'mypage.html', {'form': form})
+
+def success(request):
+    return render(request, 'upload-file.html')

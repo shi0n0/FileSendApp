@@ -1,24 +1,34 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <div class="detail">
+  {% if file_type == 'image' %}
+  <img src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}" />
 
-    {{detail.id}}
-    {{detail.file_name}}
-    {{detail.dateTimeOfUpload}}
+  {% elif file_type == 'video' %}
+  <video
+    class="video-detail"
+    src="media/{{ detail.uploadedFile }}"
+    controls
+  ></video>
 
-    {% if file_type == 'image' %}
-    <img src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}">
+  {% elif file_type == 'text' %}
+  <div class="text-detail">{{ detail.uploadedFile.read.decode}}</div>
+  {% endif %}
 
-    {% elif file_type == 'video' %}
-    <video class="video-detail" src="media/{{ detail.uploadedFile }}" controls></video>
-
-    {% elif file_type == 'text' %}
-    <div class="text-detail">
-        {{ detail.uploadedFile.read.decode}}
+  <div class="file-name-date">
+    <div>
+      <h1 style="font-weight: 700">{{detail.file_name}}</h1>
+      <p style="opacity: 0.6">{{detail.dateTimeOfUpload}}</p>
     </div>
-    {% endif %}
-
-
+    <div class="thumbs">
+      <label class="thumbs-up">
+        <input type="checkbox" name="thumb up" id="btn" />
+        <i class="fa-regular fa-thumbs-up fa-2x"></i>
+      </label>
+      <label class="thumbs-up">
+        <input type="checkbox" name="thumb down" id="btn" />
+        <i class="fa-regular fa-thumbs-down fa-2x"></i>
+      </label>
+    </div>
+  </div>
 </div>
-    {% endblock %}
+{% endblock %}
