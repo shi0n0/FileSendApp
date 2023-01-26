@@ -11,8 +11,3 @@ class UserForm(forms.ModelForm):
 class SearchForm(forms.Form):
         keyword = forms.CharField(label='', max_length=50)
 
-class LikeForm(forms.Form):
-        content = forms.CharField()
-
-class DislikeForm(forms.Form):
-        content = forms.CharField()

@@ -72,10 +72,5 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.ForeignKey(Document, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class Dislike(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.ForeignKey(Document, on_delete=models.CASCADE)
+    document = models.ForeignKey(Document, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)

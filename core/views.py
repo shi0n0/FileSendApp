@@ -1,7 +1,7 @@
 import os
 from . import models
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import FileResponse
+from django.http import FileResponse, JsonResponse
 from django_user_agents.utils import get_user_agent
 from django.views.generic import View
 from core.models import User
@@ -17,9 +17,7 @@ from functools import reduce
 from operator import and_
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
-from .forms import LikeForm, DislikeForm
-from .models import Like, Dislike
-
+from .models import Like
 # アップロードとデリート
 def mypage (request):
     return render(request, 'account/mypage.html')
@@ -142,29 +140,14 @@ def edit_profile(request):
     return render(request, 'account/edit_profile.html', {'form': form})
 
 
-def like(request):
-    if request.method == 'POST':
-        form = LikeForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_like = Like(content=form.cleaned_data['content'], user=request.user)
-            new_like.save()
-            Dislike.objects.filter(content=form.cleaned_data['content'],user=request.user).delete()
-            return redirect('/mypage')
+def like(request, document_id):
+    document = get_object_or_404(Document, pk=document_id)
+    user = request.user
+    like, created = Like.objects.get_or_create(user=user, document=document)
+    if not created:
+        like.delete()
+        message = "Like removed."
     else:
-        form = LikeForm()
-    return render(request, 'like.html', {'form': form})
+        message = "Like added."
+    return JsonResponse({"message": message})
 
-def dislike(request):
-    if request.method == 'POST':
-        form = DislikeForm(request.POST, request.FILES)
-        if form.is_valid():
-            new_dislike = Dislike(content=form.cleaned_data['content'], user=request.user)
-            new_dislike.save()
-            Like.objects.filter(content=form.cleaned_data['content'],user=request.user).delete()
-            return redirect('/mypage')
-    else:
-        form = DislikeForm()
-    return render(request, 'mypage.html', {'form': form})
-
-def success(request):
-    return render(request, 'upload-file.html')
