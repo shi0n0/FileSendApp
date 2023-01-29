@@ -17,7 +17,6 @@ from functools import reduce
 from operator import and_
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
-from .models import Like
 # アップロードとデリート
 def mypage (request):
     return render(request, 'account/mypage.html')
@@ -140,14 +139,4 @@ def edit_profile(request):
     return render(request, 'account/edit_profile.html', {'form': form})
 
 
-def like(request, document_id):
-    document = get_object_or_404(Document, pk=document_id)
-    user = request.user
-    like, created = Like.objects.get_or_create(user=user, document=document)
-    if not created:
-        like.delete()
-        message = "Like removed."
-    else:
-        message = "Like added."
-    return JsonResponse({"message": message})
 

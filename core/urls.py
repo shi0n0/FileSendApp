@@ -16,8 +16,6 @@ urlpatterns = [
     path("search", views.SearchView.as_view(), name="search"),
     path("<int:id>", views.SearchView.id_view, name="detail"),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('detail/<int:document_id>/', views.like, name='like'),
-
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

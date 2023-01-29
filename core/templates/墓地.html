@@ -1,0 +1,137 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'reset.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <script src="https://kit.fontawesome.com/7244181866.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100&family=Roboto&display=swap" rel="stylesheet">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <title>うpろだ</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo-wrap">
+            <div class="logo">うpろだ</div>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <div class="card my-4">
+                        <div class="card-body">
+                            <form method="get" class="input-group" action="search" action="" required>
+                                <input type="text" name="keyword" class="form-control" placeholder="タイトルで検索" required>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+
+                </li>
+                </a>
+
+                <a href="/">
+                    <li class="sidebar-child sidebar-style">
+                        <i class="fa-solid fa-home"></i>
+                        <span>ホーム</span>
+                    </li>
+                </a>
+
+                <a href="/mypage">
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-user"></i>
+                    <span>アカウント</span>
+                </li>
+                </a>
+
+                <li class="sidebar-child sidebar-style">
+                    <span>アップロード</span>
+                    <form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
+
+                        <script>
+                            window.addEventListener('DOMContentLoaded', ()=>{
+                        document.querySelector('#file-input').addEventListener('submit',e=>{
+                            var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
+                            if(files.length==0){
+                            e.preventDefault();
+                            alert('ファイルが選択されてないよ');
+                            }
+                        });
+                    });
+                        </script>
+                        
+                        <div class="input-1">
+                            <input class="file-title" type="text" name="fileTitle" placeholder="タイトルを入力(任意)" maxlength="30">
+                        </div>
+
+                        <span>選択</span>
+                        <div class="input-2">
+                            <label>
+                                <input class="none" size="80" type="file" name="uploadedFile">
+                            </label>
+                            {% csrf_token %}
+                            <input class="none" type="submit" value="アップロード">
+                        </div>
+
+                    </form>
+                </li>
+
+            </ul>
+        </nav>
+        <div class="spacer"></div>
+        <div class="line"></div>
+        <nav class="sidebar-under">
+            <ul>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>設定</span>
+                </li>
+                <a href="https://twitter.com/Twitter">
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>ご連絡</span>
+                </li>
+                </a>
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>アップデート</span>
+                </li>
+                <a href="logout">
+                <li class="sidebar-child sidebar-style">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>ログアウト</span>
+                </li>
+                </a>
+            </ul>
+        </nav>
+    </div>
+    
+    <div class="content">
+        <!-- 検索結果の表示 -->
+        {% if keyword %}
+            <h4 class="mb-4">「{{ keyword }}の検索結果」</h4>
+        {% endif %}
+
+        {% for post in post_data %}
+        <div class="result">
+            <a href="{{post.id}}">
+                <p>{{ post.id }}</p>
+                <p>{{ post.title }}</p>
+                <p>{{ post.file_name }}</p>
+            </a>
+        </div>
+        {% endfor %}
+
+        <!-- 検索結果の表示終了 -->
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

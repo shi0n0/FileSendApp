@@ -19,9 +19,8 @@
       <h1 style="font-weight: 700">{{detail.file_name}}</h1>
       <p style="opacity: 0.6">{{detail.dateTimeOfUpload}}</p>
     </div>
-    <form action="{% url 'like' document.id %}" method="POST" class="thumbs">
+    <div class="thumbs">
       <label class="thumbs-up">
-        {% csrf_token %}
         <input type="checkbox" name="thumb up" id="btn" />
         <i class="fa-regular fa-thumbs-up fa-2x"></i>
       </label>
@@ -29,28 +28,7 @@
         <input type="checkbox" name="thumb down" id="btn" />
         <i class="fa-regular fa-thumbs-down fa-2x"></i>
       </label>
-    </form>
-    <script>
-    $(document).on("submit", ".like-form", function(e) {
-      e.preventDefault();
-      var form = $(this);
-      var button = form.find(".like-button");
-      $.ajax({
-          type: form.attr("method"),
-          url: form.attr("action"),
-          data: form.serialize(),
-          success: function(data) {
-              if (data.message === "Like removed.") {
-                  button.text("Like");
-              } else {
-                  button.text("Unlike");
-              }
-          }
-      });
-  });
-</script>
     </div>
   </div>
 </div>
 {% endblock %}
-
