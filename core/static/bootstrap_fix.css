@@ -1,6 +1,11 @@
 a:hover{
   color: black;
 }
+.flex-item{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
 .sidebar {
   position: fixed;
@@ -14,7 +19,7 @@ a:hover{
 }
 
 .sidebar-child{
-  color: #228B22;
+  color: #005400;
   font-size: 1.25rem;
   width: 100%;
   list-style: none;
@@ -23,15 +28,22 @@ a:hover{
 }
 
 .sidebar-child:hover{
-  color: #228B22;
+  color: #005d00;
 }
+
 
 .sidebar-bg:hover{
   width: fit-content;
   height: fit-content;
   border: none;
   border-radius: 1.5rem;
-  background-color: #e6e6e6;
+  background-color: #eaeaea;
+  transition: 0.2s;
+}
+
+.sidebar-bg:active{
+  background-color: #dbdbdb;
+  transition: 0.1s;
 }
 
 .flex{
@@ -82,6 +94,8 @@ a:hover{
 }
 
 .list-style{
+  height: fit-content;
+  width: fit-content;
   display: flex;
   align-items: center;
 }

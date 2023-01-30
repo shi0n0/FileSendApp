@@ -16,9 +16,9 @@
     </head>
     <body>
       <nav class="navbar navbar-light bg-light p-2" style="position:fixed">
-        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap justify-content-between">
-          <i class="bi bi-list me-2 ms-2 mb-0 h3 list-style sidebar-toggler "></i>   
-            <a class="navbar-brand" href="#">
+        <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap flex-item">
+          <i class="bi bi-list me-2 ms-2 mb-0 h3 p-1 list-style sidebar-toggler sidebar-bg"></i>   
+            <a class="navbar-brand" href="/">
                 <img src="{% static 'icon.png' %}" alt="" width="30" height="24" class="d-inline-block align-text-top"> KAKUREGA
             </a>
         </div>
@@ -32,13 +32,13 @@
                 <!-- sidebar content goes in here -->
               <div class="flex-between">
                 <ul class="ps-0 text-left">
-                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-3">
+                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-4">
                     <a href="/" class="sidebar-child"><li><p class="mb-0"><i class="bi bi-house-door"></i>&emsp;ホーム</p></li></a>
                   </div>
-                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-3">
+                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-4">
                     <a href="ranking" class="sidebar-child"><li><i class="fa-solid fa-crown"></i>&emsp;ランキング</li></a>
                   </div>
-                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-3 mb-lg-1 flex">
+                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-4 mb-lg-1 flex">
                     <a href="mypage" class="sidebar-child"><li><i class="bi bi-person"></i>&emsp;アカウント</li></a>
                   </div>
                 </ul>
@@ -46,7 +46,7 @@
               <div class="spacer"></div>
               <div class="flex">
                 <ul class="ps-0 text-left"></ul>
-                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-3">
+                  <div class="sidebar-bg m-1 pt-2 pb-2 ps-3 pe-4">
                     <a href="/" class="sidebar-child"><li><p class="mb-0"><i class="bi bi-gear"></i>&emsp;設定</p></li></a>
                   </div>
                 </ul>
