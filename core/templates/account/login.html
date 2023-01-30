@@ -40,19 +40,10 @@
                 </div>
   
                 <p class="text-center">or:</p>
-  
-                                <form action="/login" method="post" class="form-outline mb-4">
-                    {% csrf_token %}
-                    <input type="submit" value="ログイン">
-                </form>
+
                 <!-- Email input -->
                 <div  class="form-outline mb-4">
-                    <form action="/login" method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <input type="submit" value="ログイン">
-                    </form>
-                  <form type="email" action="/login" method="post" id="loginName" class="form-control">
+                  <input type="email"  id="loginName" class="form-control">
                   <label class="form-label" for="loginName" style="margin-left: 0px;">Email</label>
                 <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 114.4px;"></div><div class="form-notch-trailing"></div></div></div>
   
@@ -87,69 +78,7 @@
                 </div>
               </form>
             </div>
-            <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
-              <form>
-                <div class="text-center mb-3">
-                  <p>Sign up with:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
   
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                  </button>
-                </div>
-  
-                <p class="text-center">or:</p>
-  
-                <!-- Name input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="registerName" class="form-control">
-                  <label class="form-label" for="registerName" style="margin-left: 0px;">Name</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 42.4px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Username input -->
-                <div class="form-outline mb-4">
-                  <input type="text" id="registerUsername" class="form-control">
-                  <label class="form-label" for="registerUsername" style="margin-left: 0px;">Username</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 66.4px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <input type="email" id="registerEmail" class="form-control">
-                  <label class="form-label" for="registerEmail" style="margin-left: 0px;">Email</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <input type="password" id="registerPassword" class="form-control">
-                  <label class="form-label" for="registerPassword" style="margin-left: 0px;">Password</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Repeat Password input -->
-                <div class="form-outline mb-4">
-                  <input type="password" id="registerRepeatPassword" class="form-control">
-                  <label class="form-label" for="registerRepeatPassword" style="margin-left: 0px;">Repeat password</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 106.4px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked="" aria-describedby="registerCheckHelpText">
-                  <label class="form-check-label" for="registerCheck">
-                    I have read and agree to the terms
-                  </label>
-                </div>
-  
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-3">Sign in</button>
               </form>
             </div>
           </div>
