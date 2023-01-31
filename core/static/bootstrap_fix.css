@@ -1,11 +1,18 @@
 a:hover{
   color: black;
 }
+
+.main-content{
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
 .flex-item{
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 
 .sidebar {
   position: fixed;
@@ -110,4 +117,8 @@ a:hover{
     padding-top: 55px;
     height: 55px;
   }
+}
+
+.text-detail{
+  background-color: #005400;
 }

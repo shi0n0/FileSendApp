@@ -1,22 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{% static 'favicon.ico' %}" />
-    <title>アカウント登録</title>
-</head>
-
-<body>
-<div class="header">
-    <div class="frame1">
-        <p class="title">ファイルアップローダ：開発中版</p>
-        <p class="caution">＜注意事項＞<br>容量が多いとアップロードに時間がかかります。<br>途中で切断するとエラーの原因になりますのでご注意ください。<br>なお、アップロードにおいて起きた事象や問題につきましては一切の責任を<br>アップロード者自身にあるものとしますので、繰り返しご注意ください。</p>
-        <img class="QR" src="{% static 'icon.png' %}" />
-    </div>
 
     {% block content %}
     <section class="pb-4">
@@ -64,13 +47,13 @@
                     <!-- Username input -->
                     {% csrf_token %}
                     <div class="form-outline mb-4">
-                      <input type="text" id="registerUsername" class="form-control" name="email">
+                      <input type="text" id="registerUsername" class="form-control" name="username">
                       <label class="form-label" for="registerUsername" style="margin-left: 0px;">Username</label>
                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 66.4px;"></div><div class="form-notch-trailing"></div></div></div>
       
                     <!-- Email input -->
                     <div class="form-outline mb-4">
-                      <input type="text" id="registerEmail" class="form-control" name="username">
+                      <input type="email" id="registerEmail" class="form-control" name="email">
                       <label class="form-label" for="registerEmail" style="margin-left: 0px;">Email</label>
                     <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 40px;"></div><div class="form-notch-trailing"></div></div></div>
       
@@ -93,6 +76,4 @@
               <!-- Pills content -->
             </div>
         </section>
-    {% endblock %}
-</body>
-</html>
+        {% endblock %}

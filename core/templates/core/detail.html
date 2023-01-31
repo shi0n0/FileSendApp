@@ -1,17 +1,16 @@
 {% extends 'base.html' %} {% block content %}
 <div class="detail">
   {% if file_type == 'image' %}
-  <img src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}" />
+  <img class="img-fluid" src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}" />
 
   {% elif file_type == 'video' %}
-  <video
-    class="video-detail"
-    src="media/{{ detail.uploadedFile }}"
-    controls
-  ></video>
-
+<div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black">
+  <video class="video-fluid" src="media/{{ detail.uploadedFile }}#t=0.001" autoplay muted playsinline controls >
+    <p>ブラウザが古いため表示できません。IEを使用している場合は他のブラウザをお試しください.</p>
+  </video>
+</div>
   {% elif file_type == 'text' %}
-  <div class="text-detail">{{ detail.uploadedFile.read.decode}}</div>
+  <div class="text-detail" style="background-color: #00540033;">{{ detail.uploadedFile.read.decode}}</div>
   {% endif %}
 
   <div class="file-name-date">
@@ -21,11 +20,9 @@
     </div>
     <div class="thumbs">
       <label class="thumbs-up">
-        <input type="checkbox" name="thumb up" id="btn" />
+        <input type="radio" name="thumb up" id="btn" />
         <i class="fa-regular fa-thumbs-up fa-2x"></i>
-      </label>
-      <label class="thumbs-up">
-        <input type="checkbox" name="thumb down" id="btn" />
+        <input type="radio" name="thumb down" id="btn" />
         <i class="fa-regular fa-thumbs-down fa-2x"></i>
       </label>
     </div>
