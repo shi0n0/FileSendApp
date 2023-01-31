@@ -24,6 +24,9 @@ def mypage (request):
 def base (request):
     return render(request, 'base.html')
 
+def top (request):
+    return render(request, 'top.html')
+
 def detail(request, id):
     detail = Document.objects.get(id=id)
     return render(request, 'core/detail.html', {'detail': detail})

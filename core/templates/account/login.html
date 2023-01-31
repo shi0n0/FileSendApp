@@ -1,95 +1,94 @@
-{% extends 'base.html' %}
+{% extends 'account_base.html' %}
 {% load static %}
 
 {% block content %}
-<section class="pb-4">
-    <div class="bg-white border rounded-5">
-      
-      <section class="w-100 p-4 d-flex justify-content-center pb-4">
-        <div style="width: 26rem;">
-          <!-- Pills navs -->
-          <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
-            <li class="nav-item" role="presentation">
-              <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
-            </li>
-            <li class="nav-item" role="presentation">
-              <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="register" role="tab" aria-controls="pills-register" aria-selected="false" tabindex="-1">Register</a>
-            </li>
-          </ul>
-          <!-- Pills navs -->
-  
-          <!-- Pills content -->
-          <div class="tab-content">
-            <div class="tab-pane fade active show" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
-              <form action="login" method="post">
-                <div class="text-center mb-3">
-                  <p>Sign in with:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-  
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                  </button>
-                </div>
-  
-                <p class="text-center">or:</p>
+<div class="container p-4 pt-3" style="display: flex; justify-content: center;">
+  <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 overlap pt-0">
 
-                <!-- Email input -->
-                {% csrf_token %}
-                <div  class="form-outline mb-4">
-                  <input type="email"  id="loginEmail" class="form-control" name="email">
-                  <label class="form-label" for="loginEmail" style="margin-left: 0px;">Email</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 114.4px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <input type="password" id="loginPassword" class="form-control" name="password">
-                  <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
-                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
-  
-                <!-- 2 column grid layout -->
-                <div class="row mb-4">
-                  <div class="col-md-6 d-flex justify-content-center">
-                    <!-- Checkbox -->
-                    <div class="form-check mb-3 mb-md-0">
-                      <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked="">
-                      <label class="form-check-label" for="loginCheck"> Remember me </label>
+    <section class="pb-4">
+        <div class="bg-white border rounded-5">
+          
+          <section class="w-100 p-4 d-flex justify-content-center pb-4">
+            <div style="width: 26rem;">
+              <!-- Pills navs -->
+              <ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link active" id="tab-login" data-mdb-toggle="pill" href="login" role="tab" aria-controls="pills-login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                  <a class="nav-link" id="tab-register" data-mdb-toggle="pill" href="register" role="tab" aria-controls="pills-register" aria-selected="false" tabindex="-1">Register</a>
+                </li>
+              </ul>
+
+              <!-- Pills content -->
+              <div class="tab-content">
+                <div class="tab-pane fade active show" id="pills-login" role="tabpanel" aria-labelledby="tab-login">
+                  <form action="login" method="post">
+                    <div class="text-center mb-3">
+                      <p>Sign in with:</p>
+                      <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-facebook-f"></i>
+                      </button>
+      
+                      <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-google"></i>
+                      </button>
+      
+                      <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-twitter"></i>
+                      </button>
+      
+                      <button type="button" class="btn btn-link btn-floating mx-1">
+                        <i class="fab fa-github"></i>
+                      </button>
                     </div>
-                  </div>
-  
-                  <div class="col-md-6 d-flex justify-content-center">
-                    <!-- Simple link -->
-                    <a href="#!">Forgot password?</a>
-                  </div>
-                </div>
-  
-                <!-- Submit button -->
-                <input type="submit" class="btn btn-primary btn-block mb-4" value="ログイン"></input>
-  
-                <!-- Register buttons -->
-                <div class="text-center">
-                  <p>Not a member? <a href="register">Register</a></p>
-                </div>
-              </form>
-            </div>
+      
+                    <p class="text-center">or:</p>
 
+                    <!-- Email input -->
+                      {% csrf_token %}
+                    <div>
+                      <input type="email"  id="loginEmail" class="form-control" name="username">
+                      <label class="form-label" for="loginEmail" style="margin-left: 0px;">Email</label>  
+                    </div>
+                    <!-- Password input -->
+                    <div>
+                      <input type="password" id="loginPassword" class="form-control" name="password">
+                      <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
+                    </div>
+                    <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 64.8px;"></div><div class="form-notch-trailing"></div></div></div>
+      
+                    <!-- 2 column grid layout -->
+                    <div class="row mb-4">
+                      <div class="col-md-6 d-flex justify-content-center">
+                        <!-- Checkbox -->
+                        <div class="form-check mb-3 mb-md-0">
+                          <input class="form-check-input" type="checkbox" value="" id="loginCheck" checked="">
+                          <label class="form-check-label" for="loginCheck"> Remember me </label>
+                        </div>
+                      </div>
+      
+                      <div class="col-md-6 d-flex jusatify-content-center">
+                        <!-- Simple link -->
+                        <a href="#!">Forgot password?</a>
+                      </div>
+                    </div>
+      
+                    <!-- Submit button -->
+                    <input type="submit" name="submit" value="ログイン" class="btn btn-primary btn-block mb-4">
+
+                    <!-- Register buttons -->
+                    <div class="text-center">
+                      <p>Not a member? <a href="register">Register</a></p>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
-          </div>
-          <!-- Pills content -->
+          </section>
+          
+          
         </div>
-      </section>
-      
-      
-    </div>
-  </section>
+    </section>
 
 {% endblock %}

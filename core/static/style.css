@@ -32,12 +32,13 @@ a {
   color: white;
 }
 
-.sidebar {
-  width: 18%;
-  background-color: white;
-  padding: 3px;
-  padding-top: 5px;
+.headder-spacer{
+  height: 6rem;
 }
+.sidebar{
+  z-index: 999;
+}
+
 .sidebar-under {
   position: sticky;
 }

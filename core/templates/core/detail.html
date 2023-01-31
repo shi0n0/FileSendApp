@@ -1,31 +1,44 @@
-{% extends 'base.html' %} {% block content %}
-<div class="detail">
-  {% if file_type == 'image' %}
-  <img class="img-fluid" src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}" />
+{% extends 'base.html' %} 
+{% block content %}
+<!-- wrapper -->
 
-  {% elif file_type == 'video' %}
-<div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black">
-  <video class="video-fluid" src="media/{{ detail.uploadedFile }}#t=0.001" autoplay muted playsinline controls >
-    <p>ブラウザが古いため表示できません。IEを使用している場合は他のブラウザをお試しください.</p>
-  </video>
-</div>
-  {% elif file_type == 'text' %}
-  <div class="text-detail" style="background-color: #00540033;">{{ detail.uploadedFile.read.decode}}</div>
-  {% endif %}
 
-  <div class="file-name-date">
-    <div>
-      <h1 style="font-weight: 700">{{detail.file_name}}</h1>
-      <p style="opacity: 0.6">{{detail.dateTimeOfUpload}}</p>
+<!-- コンテンツ表示 -->
+    <div class="detail">
+      {% if file_type == 'image' %}
+        <img class="img-fluid" src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}"/>
+
+      {% elif file_type == 'video' %}
+        <div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black">
+          <video class="video-fluid" src="media/{{ detail.uploadedFile }}#t=0.001" autoplay muted playsinline controls >
+            <p>ブラウザが古いため表示できません。IEを使用している場合は他のブラウザをお試しください.</p>
+          </video>
+        </div>
+
+      {% elif file_type == 'text' %}
+        <div class="text-detail" style="background-color: #00540033;">{{ detail.uploadedFile.read.decode}}
+        </div>
+
+      {% endif %}
+
+<!-- コンテンツ詳細 -->
+      <div class="file-name-date">
+
+        <div>
+          <h1 style="font-weight: 700">{{detail.file_name}}</h1>
+          <p style="opacity: 0.6">{{detail.dateTimeOfUpload}}</p>
+        </div>
+
+        <div class="thumbs">
+          <label class="thumbs-up">
+            <input type="radio" name="thumb up" id="btn" />
+            <i class="fa-regular fa-thumbs-up fa-2x"></i>
+            <input type="radio" name="thumb down" id="btn" />
+            <i class="fa-regular fa-thumbs-down fa-2x"></i>
+          </label>
+        </div>
+
+      </div>
+
     </div>
-    <div class="thumbs">
-      <label class="thumbs-up">
-        <input type="radio" name="thumb up" id="btn" />
-        <i class="fa-regular fa-thumbs-up fa-2x"></i>
-        <input type="radio" name="thumb down" id="btn" />
-        <i class="fa-regular fa-thumbs-down fa-2x"></i>
-      </label>
-    </div>
-  </div>
-</div>
 {% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="login" method="post">
+  <!-- Username input -->
+  <div>
+    {% csrf_token %}
+    <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="254" required="" id="id_username">
+    <label class="form-label" for="loginEmail" style="margin-left: 0px;">Email</label>  
+  </div>
+  <!-- Password input -->
+  <div>
+    <input type="password" name="password" autocomplete="current-password" required="" id="id_password">
+    <label class="form-label" for="loginPassword" style="margin-left: 0px;">Password</label>
+  </div>
+  <!-- Submit button -->
+    <input type="submit" name="submit" value="ログイン" class="btn btn-primary btn-block mb-4">
+</form>
+{% endblock %}

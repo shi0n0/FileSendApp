@@ -22,5 +22,36 @@
             <td><a class="button" href="/delete/{{file.id}}/">DELETE</a></td>
         </tr>
     {% endfor %}
+    <span>アップロード</span>
+    <form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
+
+        <script>
+            window.addEventListener('DOMContentLoaded', ()=>{
+        document.querySelector('#file-input').addEventListener('submit',e=>{
+            var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
+            if(files.length==0){
+            e.preventDefault();
+            alert('ファイルが選択されてないよ');
+            }
+        });
+    });
+        </script>
+        
+        <div class="input-1">
+            <input class="file-title" type="text" name="fileTitle" placeholder="タイトルを入力(任意)" maxlength="30">
+        </div>
+
+        <span>選択</span>
+        <div class="input-2">
+            <label>
+                <input class="none" size="80" type="file" name="uploadedFile">
+            </label>
+            {% csrf_token %}
+            <input class="none" type="submit" value="アップロード">
+        </div>
+
+    </form>
 </table>
+
+
 {% endblock %}
