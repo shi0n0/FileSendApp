@@ -1,57 +1,14 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-<table>
-    <tr>
-        <th class="ID">ID</th>
-        <th class="Title">Title</th>
-        <th class="cotent_type">種別</th>
-        <th class="FilePath">FilePath</th>
-        <th class="Date">Date&Time</th>
-        <th class="Download">Download</th>
-        <th class="Delete">Delete</th>
-    </tr>
-    {% for file in files|dictsortreversed:"id"%}
-        <tr>
-            <td><p>{{ file.id }}</p></td>
-            <td><p>{{ file.title }}</p></td>
-            <td><p>{{ file.content_type }}</p></td>
-            <td><p>{{ file.file_name }}</p></td>
-            <td><p>{{ file.dateTimeOfUpload }}</p></td>
-            <td><a class="button" href="{{ file.uploadedFile.url }}" download="{{ file.uploadedFile.name }}">PUSH</a></td>
-            <td><a class="button" href="/delete/{{file.id}}/">DELETE</a></td>
-        </tr>
-    {% endfor %}
-    <span>アップロード</span>
-    <form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
 
-        <script>
-            window.addEventListener('DOMContentLoaded', ()=>{
-        document.querySelector('#file-input').addEventListener('submit',e=>{
-            var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
-            if(files.length==0){
-            e.preventDefault();
-            alert('ファイルが選択されてないよ');
-            }
-        });
-    });
-        </script>
-        
-        <div class="input-1">
-            <input class="file-title" type="text" name="fileTitle" placeholder="タイトルを入力(任意)" maxlength="30">
+{% for file in files|dictsortreversed:"id"%}
+
+    <a href="{{ file.id }}" class="card card-div" style="width: 18rem;">
+        <img src="media//{{file.uploadedFile}}" alt="カードの画像" class="card-img-top">
+        <div class="card-body">
+        <p class="card-text">[{{file.id}}] {{file.file_name}}</p>
         </div>
-
-        <span>選択</span>
-        <div class="input-2">
-            <label>
-                <input class="none" size="80" type="file" name="uploadedFile">
-            </label>
-            {% csrf_token %}
-            <input class="none" type="submit" value="アップロード">
-        </div>
-
-    </form>
-</table>
-
-
+    </a>
+{% endfor %}
 {% endblock %}

@@ -33,26 +33,31 @@ def detail(request, id):
 
 def uploadFile(request):
     if request.method == "POST":
-        #form,dataの取得
         fileTitle = request.POST["fileTitle"]
-        uploadedFile = request.FILES["uploadedFile"]
-        content_type = request.FILES["uploadedFile"].content_type
-
+        uploadedFile = request.FILES.get("uploadedFile", None)
+        content_type = request.FILES["uploadedFile"].content_type if uploadedFile else ""
+        
+        # ファイルが選択されていない場合はエラーを表示
+        if not uploadedFile:
+            messages.error(request, "ファイルを選択してください")
+            return redirect("/upload")
+        
         # データベース保存
         document = models.Document(
             title = fileTitle,
             uploadedFile = uploadedFile,
-            content_type = uploadedFile.content_type
+            content_type = content_type
         )
         document.save()
-        print("ファイルをアップロードしました")
-        return redirect("/")
+        messages.success(request, "ファイルをアップロードしました")
+        return redirect("/upload")
         
     documents = models.Document.objects.all()
 
     return render(request, "core/upload-file.html", context = {
         "files": documents
-        })
+    })
+
 
 def delete_file(request,pk):
     template_name = "core/file-delete.html"
@@ -112,7 +117,7 @@ class SearchView(View):
             query_list = keyword.split()
             query = Q()
             for q in query_list:
-                query &= Q(title__exact=keyword)
+                query &= Q(title__icontains=q)
             post_data = post_data.filter(query)
 
         return render(request, 'base.html', {
@@ -129,6 +134,7 @@ class SearchView(View):
         elif detail.content_type.startswith('text/plain'):
             file_type = 'text'
         return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type})
+
     
 @login_required
 def edit_profile(request):
