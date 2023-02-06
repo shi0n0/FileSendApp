@@ -1,0 +1,8 @@
+{% extends 'base.html' %} 
+{% block content %}
+<ul>
+    {% for document in documents %}
+      <li>{{ document.title }} (views: {{ document.view_count }})</li>
+    {% endfor %}
+</ul>
+{% endblock %}

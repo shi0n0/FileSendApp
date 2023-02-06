@@ -63,6 +63,9 @@ def uploadFile(request):
         "files": documents
     })
 
+def document_list(request):
+    documents = Document.objects.all().order_by('-view_count')
+    return render(request, 'core/ranking.html', {'documents':documents})
 
 def delete_file(request,pk):
     template_name = "core/file-delete.html"

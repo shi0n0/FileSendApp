@@ -28,5 +28,6 @@ urlpatterns = [
     path('search', include('core.urls' , namespace='search')),
     path('<int:id>', include('core.urls' , namespace='detail')),
     path('edit_profile/', include('core.urls' , namespace='edit_profile')),
+    path('ranking' , include('core.urls', namespace="ranking")),
 
 ]

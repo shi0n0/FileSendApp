@@ -106,8 +106,18 @@
           sidebar.style.left = "-100%";
           sidebar_status = false;
         };
-
         sidebar_toggler_btn.addEventListener("click", sidebarToggler);
+
+        document.addEventListener('click' , (event) => {
+          if(
+            event.target != sidebar &&
+            event.target != sidebar_toggler_btn &&
+            sidebar_status == true
+          ){
+            sidebar.style.left = "-100%";
+            sidebar_status = false;
+          }
+        })
       </script>
 <!-- サイドバー用JS終了 -->
     </body>
