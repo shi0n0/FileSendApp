@@ -15,6 +15,7 @@
         <title>KAKUREGA</title>
     </head>
     <body>
+<!-- ヘッダー -->
       <nav class="navbar navbar-light bg-light p-2" style="position:fixed">
         <div class="d-flex col-12 col-md-3 col-lg-2 mb-2 mb-lg-0 flex-wrap flex-md-nowrap flex-item">
           <i class="bi bi-list me-2 ms-2 mb-0 h3 p-1 list-style sidebar-toggler sidebar-bg"></i>   
@@ -26,8 +27,12 @@
             <input type="text" name="keyword" class="form-control" placeholder="タイトルで検索" required>
           </form>
       </nav>
+<!-- ヘッダー終了 -->
+<!-- ヘッダースペース -->
       <div class="headder-spacer"></div>
-        <div class="row w-100">
+<!-- ヘッダースペース終了 -->
+
+<!-- サイドバー -->
             <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar pe-1 ps-1 sidebar">
                 <!-- sidebar content goes in here -->
               <div class="flex-between">
@@ -54,10 +59,14 @@
                   </div>
                 </ul>
               </div>
-            </nav> 
-            <div class="container p-4 pt-3">
-              <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4 overlap pt-0">
-                <!-- 検索結果の表示 -->
+            </nav>
+<!-- サイドバー終了 -->
+
+<!-- メインラッパー -->
+        <main class="row w-100 h-100 m-0 p-0">
+            <div class="main-container pt-3" style="padding-left: 3rem; padding-right: 3rem;">
+
+<!-- 検索結果の表示 -->
                 {% if keyword %}
                     <h4 class="mb-4">「{{ keyword }}の検索結果」</h4>
                 {% endif %}
@@ -71,13 +80,17 @@
                     </a>
                 </div>
                 {% endfor %}
+<!-- 検索結果表示終了 -->
 
+<!-- メインコンテンツ -->
                 {% block content %}
                 {% endblock %}
-              </main>
+<!-- メインコンテンツ終了 -->
         </div>
     </div>
+<!-- メインラッパー終了 -->
 
+<!-- サイドバー用JS -->
       <script>
         let sidebar_toggler_btn = document.querySelector(".sidebar-toggler");
         let sidebar = document.querySelector('.sidebar');
@@ -95,7 +108,7 @@
         };
 
         sidebar_toggler_btn.addEventListener("click", sidebarToggler);
-
       </script>
+<!-- サイドバー用JS終了 -->
     </body>
     </html>

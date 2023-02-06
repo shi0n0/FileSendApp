@@ -17,6 +17,7 @@ from functools import reduce
 from operator import and_
 from django.contrib.auth.decorators import login_required
 from .forms import UserForm
+
 # アップロードとデリート
 def mypage (request):
     return render(request, 'account/mypage.html')
@@ -24,11 +25,13 @@ def mypage (request):
 def base (request):
     return render(request, 'base.html')
 
-def top (request):
-    return render(request, 'top.html')
+def upload (request):
+    return render(request, 'core/upload-file.html')
 
 def detail(request, id):
     detail = Document.objects.get(id=id)
+    detail.view_count += 1
+    detail.save()
     return render(request, 'core/detail.html', {'detail': detail})
 
 def uploadFile(request):
@@ -46,7 +49,8 @@ def uploadFile(request):
         document = models.Document(
             title = fileTitle,
             uploadedFile = uploadedFile,
-            content_type = content_type
+            content_type = content_type,
+            view_count = 0 # view_count の初期値を 0 に設定
         )
         document.save()
         messages.success(request, "ファイルをアップロードしました")
@@ -54,7 +58,7 @@ def uploadFile(request):
         
     documents = models.Document.objects.all()
 
-    return render(request, "core/upload-file.html", context = {
+    return render(request, "core/top.html", context = {
         "files": documents
     })
 

@@ -6,6 +6,9 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
+
 # Create your models here.
 
 #アップロードされたファイルの詳細
@@ -15,10 +18,12 @@ class Document(models.Model):
     uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
     content_type = models.CharField(max_length=255,default="", blank=True, null=True)
-    
+    thumbnail = ImageSpecField(source='uploadedFile', processors=[ResizeToFill(100,100)], format='JPEG', options={'quality': 60})
+    view_count = models.PositiveIntegerField(default=0)
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
+
 
 #カスタムユーザーモデル
 class UserManager(BaseUserManager):

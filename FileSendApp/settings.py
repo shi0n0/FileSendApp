@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-xpig34(1u8d#%!y-ey^66kni8p(f4cyp*uc&l3x!yk4++-ta)@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["10.22.1.97","127.0.0.1","192.168.0.13","10.22.1.39","10.22.3.62"]
+ALLOWED_HOSTS = ["10.22.1.97","127.0.0.1","192.168.0.13","10.22.1.39","10.22.3.62","10.22.1.29"]
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "core",
     'django_user_agents',
     'django_bootstrap5',
+    'imagekit',
 ]
 
 MIDDLEWARE = [

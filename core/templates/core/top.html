@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h1>【アップロードコンテンツ】</h1>
+<ul class="m-0 p-0" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+    {% for document in files %} 
+    <li class="p-0 pb-3 mb-3" style="list-style: none; width: fit-content; height: 16rem;">
+      <a
+        href="{{ document.id }}"
+        class="card card-fix"
+        style="width: 20rem; text-decoration: none; color: black; height: 16rem; overflow: hidden"
+      >
+        {% if document.content_type == "video/mp4" %}
+        <video control autoplay muted style="width: 100%; height: 70%; background-color: black;">
+          <source
+            alt="カードの動画"
+            src="{{ document.uploadedFile.url }}#t=10"
+            type="video/mp4"
+          />
+        </video>
+        {% elif document.content_type == "text" %}
+        <img
+          src="{% static 'テキスト.png' %}"
+          alt="カードのテキスト画像"
+          style="width: 100%; height: 70%; border-bottom: solid 1px rgb(200, 200, 200);"
+        />
+        {% else %}
+        <img
+          src="{{ document.uploadedFile.url }}"
+          alt="カードの画像"
+          style="width: 100%; height: 70%; border-bottom: solid 1px;"
+        />
+        {% endif %}
+        <div class="ps-2" style="display: flex; align-items: center;">
+          <i class="bi bi-person-circle" style="font-size: 3rem;"></i>
+          <p class="ps-2 pe-3 m-0" style="height: fit-content; font-size: large;">{{ document.title }}</p>
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  
+{% endblock %}

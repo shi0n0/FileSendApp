@@ -1,14 +1,31 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block content %}
+<span>アップロード</span>
+<form id="file-input" action="{% url 'core:uploadFile' %}" method="POST" enctype="multipart/form-data">
 
-{% for file in files|dictsortreversed:"id"%}
+    <script>
+        window.addEventListener('DOMContentLoaded', ()=>{
+    document.querySelector('#file-input').addEventListener('submit',e=>{
+        var files=[].filter.call(e.target.querySelectorAll('[type=file]'),x=>x.value!=="");
+        if(files.length==0){
+        e.preventDefault();
+        alert('ファイルが選択されてないよ');
+        }
+    });
+});
+    </script>
+    
+    <div class="input-1">
+        <input class="file-title form-control" type="text" name="fileTitle" placeholder="タイトルを入力(任意)" maxlength="30">
+        {{ document.uploadedFile.id }}
+    </div>
 
-    <a href="{{ file.id }}" class="card card-div" style="width: 18rem;">
-        <img src="media//{{file.uploadedFile}}" alt="カードの画像" class="card-img-top">
-        <div class="card-body">
-        <p class="card-text">[{{file.id}}] {{file.file_name}}</p>
-        </div>
-    </a>
-{% endfor %}
+    <div class="input-2">
+            <label class="form-label">選択</label>
+            <input class="form-control" size="80" type="file" name="uploadedFile">
+        {% csrf_token %}
+        <input class="form-control" type="submit" value="アップロード">
+    </div>
+
+</form>
 {% endblock %}
