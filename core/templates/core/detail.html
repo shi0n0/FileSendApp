@@ -2,15 +2,16 @@
 {% block content %}
 <!-- wrapper -->
 
-
 <!-- コンテンツ表示 -->
+<div class="two-column-wrapper" style="display: flex; width: 100%;">
+<div class="detail-wrapper" style="width: 75%; padding-right: 1.5rem;">
     <div class="detail">
       {% if file_type == 'image' %}
         <img class="img-fluid" src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}"/>
 
       {% elif file_type == 'video' %}
-        <div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black">
-          <video class="video-fluid" src="media/{{ detail.uploadedFile }}#t=0.001" autoplay playsinline controls >
+        <div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black" style="width: 100%; display: flex; justify-content: center;">
+          <video id="video" src="media/{{ detail.uploadedFile }}#t=0.001"  autoplay playsinline controls >
             <p>ブラウザが古いため表示できません。IEを使用している場合は他のブラウザをお試しください.</p>
           </video>
         </div>
@@ -38,8 +39,11 @@
             <i class="fa-regular fa-thumbs-down fa-2x"></i>
           </label>
         </div>
-
       </div>
-
     </div>
+</div>
+<div class="free-space">
+  <div>フリースペース</div>
+</div> 
+</div>
 {% endblock %}

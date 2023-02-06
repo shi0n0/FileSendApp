@@ -135,8 +135,48 @@ main{
   background-color: #005400;
 }
 
-.video-detai{
-  
+@media (max-width: 767.97px){
+  .video-detail{
+    width: 100%!important;
+  }
+  .file-name-date{
+    padding: 1rem;
+  }
+  .main-container{
+    padding: 0!important;
+    padding-top: 0.3rem!important;
+  }
+  .detail-wrapper{
+    width: 100%!important;
+  }
+  .two-column-wrapper{
+    display: initial!important;
+  }
+  .detail-wrapper{
+    padding: 0!important;
+  }
+  .free-space{
+    width: 100%!important;
+    height: 15vh!important;
+  }
+}
+
+.two-column-wrapper{
+  display: flex;
+}
+
+.detail-wrapper{
+  display: block;
+}
+
+.free-space{
+  display: block;
+  text-align: center;
+  width: 25%;
+  border: solid 2px;
+  height: 90vh;
+  position: absolute;
+  position: relative;
 }
 .card-text{
   border-top: 1px;

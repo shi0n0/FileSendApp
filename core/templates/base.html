@@ -5,13 +5,13 @@
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="https://kit.fontawesome.com/7244181866.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://kit.fontawesome.com/7244181866.css" crossorigin="anonymous">
-        <link rel="stylesheet" href="{% static 'bootstrap_fix.css' %}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css">
         {% bootstrap_css %}
         {% bootstrap_javascript %}
+        <link rel="stylesheet" href="{% static 'bootstrap_fix.css' %}">
         <title>KAKUREGA</title>
     </head>
     <body>
@@ -64,7 +64,7 @@
 
 <!-- メインラッパー -->
         <main class="row w-100 h-100 m-0 p-0">
-            <div class="main-container pt-3" style="padding-left: 3rem; padding-right: 3rem;">
+            <div class="main-container pt-3" style="padding-left: 2rem; padding-right: 2rem;">
 
 <!-- 検索結果の表示 -->
                 {% if keyword %}
