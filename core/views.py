@@ -30,8 +30,9 @@ def upload (request):
 
 def detail(request, id):
     detail = Document.objects.get(id=id)
-    detail.view_count += 1
-    detail.save()
+    print("増やしました")
+    Document.view_count += 1
+    Document.save()
     return render(request, 'core/detail.html', {'detail': detail})
 
 def uploadFile(request):
@@ -131,6 +132,9 @@ class SearchView(View):
     def id_view(request, id):
         detail = Document.objects.get(id=id)
         file_type = detail.content_type.split('/')[0]
+        detail.view_count += 1
+        detail.save()
+        print("増やしました")
         if detail.content_type.startswith('image'):
             file_type = 'image'
         elif detail.content_type.startswith('video'):
