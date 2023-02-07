@@ -19,11 +19,16 @@ class Document(models.Model):
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
     content_type = models.CharField(max_length=255,default="", blank=True, null=True)
     thumbnail = ImageSpecField(source='uploadedFile', processors=[ResizeToFill(100,100)], format='JPEG', options={'quality': 60})
+    comment = models.CharField( max_length=244)
     view_count = models.PositiveIntegerField(default=0)
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
 
+class Comment(models.Model):
+    document = models.ForeignKey(Document, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 #カスタムユーザーモデル
 class UserManager(BaseUserManager):
