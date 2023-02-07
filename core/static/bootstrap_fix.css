@@ -22,6 +22,11 @@ main{
   justify-content: space-between;
 }
 
+.thumbs{
+  font-size: 0.7rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
 
 .sidebar {
   position: fixed;
@@ -141,6 +146,7 @@ main{
   }
   .file-name-date{
     padding: 1rem;
+    display: flex;
   }
   .main-container{
     padding: 0!important;
@@ -177,6 +183,20 @@ main{
   height: 90vh;
   position: absolute;
   position: relative;
+}
+.description{
+  font-size:1rem;
+  background-color: #ecececb3;
+  border-radius: 1.5rem;
+  padding: 1rem;
+}
+.detail-child{
+  background-color: #ecececb3;
+  height: fit-content;
+  padding: 0.3rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 1.5rem;
 }
 .card-text{
   border-top: 1px;

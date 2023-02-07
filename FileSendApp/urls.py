@@ -26,8 +26,7 @@ urlpatterns = [
     path('base', include('core.urls' , namespace='base')),
     path('upload', include('core.urls' , namespace='uploadFile')),
     path('search', include('core.urls' , namespace='search')),
-    path('<int:id>', include('core.urls' , namespace='detail')),
+    path('detail/<int:id>', include('core.urls' , namespace='detail')),
     path('edit_profile/', include('core.urls' , namespace='edit_profile')),
     path('ranking' , include('core.urls', namespace="ranking")),
-
 ]

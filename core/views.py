@@ -16,8 +16,9 @@ from django.db.models import Q
 from functools import reduce
 from operator import and_
 from django.contrib.auth.decorators import login_required
-from .forms import UserForm
-
+from .forms import CommentForm, UserForm
+from django.views.generic import CreateView
+from .models import Comment
 # アップロードとデリート
 def mypage (request):
     return render(request, 'account/mypage.html')
@@ -28,18 +29,13 @@ def base (request):
 def upload (request):
     return render(request, 'core/upload-file.html')
 
-def detail(request, id):
-    detail = Document.objects.get(id=id)
-    print("増やしました")
-    Document.view_count += 1
-    Document.save()
-    return render(request, 'core/detail.html', {'detail': detail})
 
 def uploadFile(request):
     if request.method == "POST":
         fileTitle = request.POST["fileTitle"]
         uploadedFile = request.FILES.get("uploadedFile", None)
         content_type = request.FILES["uploadedFile"].content_type if uploadedFile else ""
+        description = request.POST["description"]
         
         # ファイルが選択されていない場合はエラーを表示
         if not uploadedFile:
@@ -51,9 +47,11 @@ def uploadFile(request):
             title = fileTitle,
             uploadedFile = uploadedFile,
             content_type = content_type,
-            view_count = 0 # view_count の初期値を 0 に設定
+            description = description,
+            view_count = 0, # view_count の初期値を 0 に設定
         )
         document.save()
+
         messages.success(request, "ファイルをアップロードしました")
         return redirect("/upload")
         
@@ -116,7 +114,7 @@ class AccountLogoutView(LogoutView):
     
 
     
-class SearchView(View):
+class DetailView(View):
     def get(self, request, *args, **kwargs):
         post_data = Document.objects.all()
         keyword = request.GET.get('keyword')
@@ -128,9 +126,10 @@ class SearchView(View):
                 query &= Q(title__icontains=q)
             post_data = post_data.filter(query)
 
+
         return render(request, 'base.html', {
             'keyword': keyword,
-            'post_data': post_data
+            'post_data': post_data,
         })
     def id_view(request, id):
         detail = Document.objects.get(id=id)
@@ -144,7 +143,21 @@ class SearchView(View):
             file_type = 'video'
         elif detail.content_type.startswith('text/plain'):
             file_type = 'text'
-        return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type})
+        
+        comments = Comment.objects.filter(document=detail)
+
+        return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type, 'comments': comments})
+
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'core/comment_form.html'
+    success_url = '/'
+    def form_valid(self, form):
+        form.instance.document = Document.objects.get(id=self.kwargs['id'])
+        return super().form_valid(form)
+
 
     
 @login_required

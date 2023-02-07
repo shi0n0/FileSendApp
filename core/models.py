@@ -14,20 +14,22 @@ from imagekit.processors import ResizeToFill
 #アップロードされたファイルの詳細
 
 class Document(models.Model):
+    id = models.AutoField(primary_key=True)
     title = models.CharField(max_length = 30)
     uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
     content_type = models.CharField(max_length=255,default="", blank=True, null=True)
     thumbnail = ImageSpecField(source='uploadedFile', processors=[ResizeToFill(100,100)], format='JPEG', options={'quality': 60})
-    comment = models.CharField( max_length=244)
+    description = models.CharField(max_length=255,default="", blank=True, null=True)
     view_count = models.PositiveIntegerField(default=0)
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
-
+    
 class Comment(models.Model):
-    document = models.ForeignKey(Document, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=255)
+    name = models.CharField(max_length=50)
+    body = models.TextField()
+    document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
 
 #カスタムユーザーモデル
