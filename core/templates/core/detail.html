@@ -49,8 +49,8 @@
         <p class="m-0">{{ detail.description }}</p>
       </div>
       {% for comment in comments %}
-        <p>{{ comment.user }}</p>
-        <p>{{ comment.text }}</p>
+        <p>{{ comment.name }}</p>
+        <p>{{ comment.body }}</p>
       {% endfor %}
         <script>
         comments = Comment.objects.filter(document=document)
