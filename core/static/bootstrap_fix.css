@@ -187,7 +187,7 @@ main{
 .description{
   font-size:1rem;
   background-color: #ecececb3;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   padding: 1rem;
 }
 .detail-child{
@@ -197,6 +197,28 @@ main{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 1.5rem;
+}
+
+.comment-field{
+  margin-top: 3rem;
+  padding: 1rem;
+  background-color: #ecececb3;
+  border-radius: 1rem;
+}
+
+.comment-profile{
+  display: flex;
+}
+.comment-name{
+  font-size: 0.9rem;
+  color: rgb(65, 65, 65);
+  margin: 0;
+}
+.comment-body{
+  margin: 0;
+}
+.comment-created_at{
+  color:dimgrey; font-size: 0.8rem;
 }
 .card-text{
   border-top: 1px;

@@ -48,10 +48,23 @@
       <div class="description">
         <p class="m-0">{{ detail.description }}</p>
       </div>
+
+      <div class="comment-field">
       {% for comment in comments %}
-        <p>{{ comment.name }}</p>
-        <p>{{ comment.body }}</p>
+      <div class="comment-profile">
+        <i class="bi bi-person-circle" style="font-size: 3rem; padding-right: 1rem; display: flex; align-items: flex-start;"></i>
+        <div>
+          <div>
+            <p class="comment-name">{{ comment.name }}</p>
+          </div>
+          <div>
+            <p class="comment-body">{{ comment.body }}</p>
+            <p class="comment-created_at">{{ comment.created_at }}</p>
+          </div>
+        </div>
+      </div>
       {% endfor %}
+      </div>
         <script>
         comments = Comment.objects.filter(document=document)
         </script>
