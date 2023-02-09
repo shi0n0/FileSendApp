@@ -27,7 +27,7 @@ class Document(models.Model):
         return os.path.basename(self.uploadedFile.name)
     
 class Comment(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default="名無しさん", blank=True, null=True)
     body = models.TextField()
     document = models.ForeignKey(Document, on_delete=models.CASCADE, related_name='comments')
     created_at = models.DateTimeField(auto_now_add=True)
