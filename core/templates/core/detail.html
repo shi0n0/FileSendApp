@@ -40,14 +40,25 @@
                 <i class="fa-regular fa-thumbs-down fa-2x"></i>
               </label>
             </div>
+            <a href="https://twitter.com/share?
+            url={{ request.build_absolute_uri }}/&
+            text=あなたの隠れ家:KAKUREGA" 
+            rel="nofollow" 
+            target="_blank"
+            >
+            <i class="bi bi-twitter twitter-icon"></i>
+          </a>
 
-            <div class="detail-child"><i class="bi bi-share"></i>共有</div>
+            <div class="detail-child">
+              <i class="bi bi-share"></i>共有</div>
           </div>
         </div>
       </div>
       <div class="description">
         <p class="m-0">{{ detail.description }}</p>
       </div>
+
+
 
       <div class="comment-field">
       {% for comment in comments %}
