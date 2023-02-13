@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django_user_agents',
     'django_bootstrap5',
     'imagekit',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [

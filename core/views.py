@@ -36,6 +36,9 @@ def uploadFile(request):
         uploadedFile = request.FILES.get("uploadedFile", None)
         content_type = request.FILES["uploadedFile"].content_type if uploadedFile else ""
         description = request.POST["description"]
+        tag1 = request.POST["tag1"]
+        tag2 = request.POST["tag2"]
+        tag3 = request.POST["tag3"]
         
         # ファイルが選択されていない場合はエラーを表示
         if not uploadedFile:
@@ -49,6 +52,9 @@ def uploadFile(request):
             content_type = content_type,
             description = description,
             view_count = 0, # view_count の初期値を 0 に設定
+            tag1 = tag1,
+            tag2 = tag2,
+            tag3 = tag3,
         )
         document.save()
 
