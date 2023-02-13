@@ -22,6 +22,9 @@ class Document(models.Model):
     thumbnail = ImageSpecField(source='uploadedFile', processors=[ResizeToFill(100,100)], format='JPEG', options={'quality': 60})
     description = models.CharField(max_length=255,default="", blank=True, null=True)
     view_count = models.PositiveIntegerField(default=0)
+    tag1 = models.CharField(max_length=10)
+    tag2 = models.CharField(max_length=10)
+    tag3 = models.CharField(max_length=10)
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
