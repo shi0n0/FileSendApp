@@ -36,7 +36,7 @@ main{
   z-index: 100;
   padding: 75px 0 0;
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-  transition: .35s;
+  transition: 300ms;
 }
 
 .sidebar-child{
@@ -143,6 +143,11 @@ main{
 }
 
 @media (max-width: 767.97px){
+  .sidebar{
+    span{
+      display: none;
+    }
+  }
   .video-detail{
     width: 100%!important;
   }
@@ -165,6 +170,12 @@ main{
   .free-space{
     width: 100%!important;
     height: 15vh!important;
+  }
+  .slider{
+    width: 100%;
+  }
+  .slide-fix{
+    width: 100%!important;
   }
 }
 
@@ -248,3 +259,11 @@ main{
 }
 
 
+.slider{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.slide-fix{
+  width: 60%;
+}
