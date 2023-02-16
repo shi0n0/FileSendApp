@@ -143,11 +143,6 @@ main{
 }
 
 @media (max-width: 767.97px){
-  .sidebar{
-    span{
-      display: none;
-    }
-  }
   .video-detail{
     width: 100%!important;
   }
@@ -265,5 +260,6 @@ main{
   justify-content: center;
 }
 .slide-fix{
-  width: 60%;
+  width: 50%;
+  box-shadow: 1px 1px 15px 0.5px #33333364;
 }
