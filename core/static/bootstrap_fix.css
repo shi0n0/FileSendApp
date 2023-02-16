@@ -46,6 +46,7 @@ main{
   list-style: none;
   text-decoration:none;
   text-align: left;
+  background-color: rgba(255, 255, 255, 0.247);
 }
 
 .sidebar-child:hover{
@@ -108,6 +109,7 @@ main{
 
 .sidebar .nav-link {
   color: #333;
+
 }
 
 .sidebar .nav-link.active {
@@ -205,6 +207,15 @@ main{
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 1.5rem;
+  text-decoration: none;
+  margin-left: 0.5rem;
+  color: #333;
+}
+.detail-child:hover{
+  background-color: #eaeaea;
+}
+.detail-child:active{
+  background-color: #dbdbdb;
 }
 
 .comment-field{

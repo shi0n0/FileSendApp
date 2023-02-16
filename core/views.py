@@ -137,6 +137,18 @@ class DetailView(View):
             'keyword': keyword,
             'post_data': post_data,
         })
+    
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('name') and request.POST.get('body'):
+            document = Document.objects.get(id=kwargs['id'])
+            comment = Comment(document=document, name=request.POST['name'], body=request.POST['body'])
+            comment.save()
+            messages.success(request, 'コメントを作成しました')
+        else:
+            messages.error(request, '名前とコメントを入力してください')
+        return redirect('core:detail', id=kwargs['id'])
+    
+
     def id_view(request, id):
         detail = Document.objects.get(id=id)
         file_type = detail.content_type.split('/')[0]
@@ -162,7 +174,8 @@ class CommentCreateView(CreateView):
     success_url = '/'
     def form_valid(self, form):
         form.instance.document = Document.objects.get(id=self.kwargs['id'])
-        return super().form_valid(form)
+        super().form_valid(form)
+        return redirect("core:detail", id=self.kwargs["id"])
 
 
     

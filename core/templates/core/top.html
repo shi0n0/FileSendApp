@@ -1,4 +1,27 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
+
+<div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'ひまわり.jpg' %}" class="d-block w-100 active-slide" alt="Slide 1">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static '海岸.jpg' %}" class="d-block w-100" alt="Slide 2">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'windows.jpg' %}" class="d-block w-100" alt="Slide 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true" style="color: black;"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true" style="color: black;"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
 <h1>【アップロードコンテンツ】</h1>
 <ul class="m-0 p-0" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
     {% for document in files %} 
@@ -37,5 +60,6 @@
     </li>
     {% endfor %}
   </ul>
+  
   
 {% endblock %}

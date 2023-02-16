@@ -11,10 +11,14 @@
 
       {% elif file_type == 'video' %}
         <div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black" style="width: 100%; display: flex; justify-content: center;">
-          <video id="video" src="media/{{ detail.uploadedFile }}#t=0.001"  autoplay playsinline controls >
-            <p>ブラウザが古いため表示できません。IEを使用している場合は他のブラウザをお試しください.</p>
+          <video class="video-js" id="video" preload="auto" autoplay data-setup={} controls playsinline>
+            <source src="media/{{ detail.uploadedFile }}#t=0.001" type="video/mp4">
+            <p class="vjs-no-js">
+              ブラウザが古いか不正な操作のため表示できません
+            </p>
           </video>
         </div>
+
 
       {% elif file_type == 'text' %}
         <div class="text-detail" style="background-color: #00540033;">{{ detail.uploadedFile.read.decode}}
@@ -43,17 +47,13 @@
                 <i class="fa-regular fa-thumbs-down fa-2x"></i>
               </label>
             </div>
-            <a href="https://twitter.com/share?
-            url={{ request.build_absolute_uri }}/&
-            text=あなたの隠れ家:KAKUREGA" 
-            rel="nofollow" 
-            target="_blank"
-            >
-            <i class="bi bi-twitter twitter-icon"></i>
-          </a>
-
-            <div class="detail-child">
-              <i class="bi bi-share"></i>共有</div>
+            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="あなたの隠れ家:KAKUREGA" data-url="https://github.com/shi0n0/FileSendApp" data-via="KAKUREGA" data-hashtags="KAKUREGA" data-dnt="true" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          <div class="detail-child">
+              <input id="CopyTarget" value="{{ request.build_absolute_uri }}" type="hidden">
+              <a type="button" onclick="CopyToClipboard()" title="リンクをコピー">
+                <i class="bi bi-share"></i>共有
+              </a>
+          </div>
           </div>
         </div>
       </div>
@@ -61,6 +61,20 @@
         <p class="m-0">{{ detail.description }}</p>
       </div>
 
+
+
+      <form method="post" action="{{detail.id}}/comment/">
+        {% csrf_token %}
+        <div>
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name">
+        </div>
+        <div>
+          <label for="body">Comment:</label>
+          <input id="body" name="body">
+        </div>
+        <button type="submit" value="Submit">Submit</button>
+      </form>
 
 
       <div class="comment-field">
@@ -87,6 +101,24 @@
 <div class="free-space">
   <div>フリースペース</div>
 </div> 
+
+<!-- コピーボタン -->
+<script>
+  function CopyToClipboard() {
+      // コピー対象のエレメントを格納する変数を定義する
+      var copyTarget = document.getElementById("CopyTarget");
+      
+      // コピー対象のテキストを選択する
+      copyTarget.select();
+      
+      // 選択しているテキストをクリップボードにコピーする
+      document.execCommand("Copy");
+      
+      // コピーが完了したことをユーザーにお知らせする
+      alert("コピーしました：" + copyTarget.value);
+  }
+</script>
+
 </div>
 
 {% endblock %}
