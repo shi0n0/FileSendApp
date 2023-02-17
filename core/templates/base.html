@@ -13,6 +13,7 @@
         {% bootstrap_css %}
         {% bootstrap_javascript %}
         <link rel="stylesheet" href="{% static 'bootstrap_fix.css' %}">
+        <script src="{% static 'style.js' %}"></script>
         <title>KAKUREGA</title>
     </head>
     <body>
@@ -84,7 +85,10 @@
 <!-- 検索結果表示終了 -->
 
 <!-- メインコンテンツ -->
+
+
                 {% block content %}
+
                 {% endblock %}
 <!-- メインコンテンツ終了 -->
         </div>

@@ -167,11 +167,12 @@ main{
     height: 15vh!important;
   }
   .slider{
-    width: 100%;
+    width: 100%!important;
   }
   .slide-fix{
     width: 100%!important;
   }
+
 }
 
 .two-column-wrapper{
@@ -254,12 +255,61 @@ main{
 }
 
 
-.slider{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-.slide-fix{
-  width: 50%;
-  box-shadow: 1px 1px 15px 0.5px #33333364;
-}
+    /*------ スライダー横幅 ------*/
+    .slider{
+      width:70%;
+      margin:0 auto;
+  }
+
+  /*------ スライダー画像 ------*/
+  .slider img{
+      width:100%;
+  }
+
+  /*-------- 高さ調整 ----------*/
+  .slider .slick-slide{
+      height:auto!important;
+  }
+
+  /*----------- 矢印 -----------*/
+  .slider .slick-next{
+      right:0!important;
+  }
+  .slider .slick-prev{
+      left:0!important;
+  }
+  .slider .slick-arrow{
+      width: initial!important;
+      height: initial!important;
+      z-index:2!important;
+  }
+  .slider .slick-arrow:before{
+      font-size: 2rem!important;
+  }
+
+
+  .slick-slide {
+    transition: 1s ease;
+    transform: scale(.85);
+    transform-origin: 110% 50%;
+    filter: blur(7px);
+  }
+  
+  .slick-current {
+    position: relative;
+    z-index: 2;
+    transform: scale(1);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+  }
+  
+  .slick-current + .slick-slide {
+    transform-origin: -10% 50%;
+    transition-duration: 0.8s;
+  }
+  
+  .slick-current + .slick-slide + .slick-slide {
+    transform-origin: 110% 50%;
+    transition-duration: 0.8s;
+  }
+  
