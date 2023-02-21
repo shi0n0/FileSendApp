@@ -1,23 +1,36 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <!-- スライダー用 -->
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.css"/>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
-<script src="{% static 'style.js' %}"></script>
+<link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
 <!-- スライダー用終了 -->
 <!-- スライダー -->
-<div class="slider">   
-  <div><img src="{% static 'ひまわり.jpg' %}"></div>
-  <div><img src="{% static '海岸.jpg' %}"></div>   
-  <div><img src="{% static 'windows.jpg' %}"></div>
-  <div><img src="{% static 'ひまわり.jpg' %}"></div>
-  <div><img src="{% static '海岸.jpg' %}"></div>   
-  <div><img src="{% static 'windows.jpg' %}"></div>
-  <div><img src="{% static 'ひまわり.jpg' %}"></div>
-  <div><img src="{% static '海岸.jpg' %}"></div>   
-  <div><img src="{% static 'windows.jpg' %}"></div>
-</div>
+
+<style>
+  .main-container{
+    padding-left: 0!important;
+    padding-right: 0!important;
+  }
+</style>
+
+<section id="image-carousel" class="splide" aria-label="ヘッダーカルーセル">
+  <div class="splide__track">
+		<ul class="splide__list">
+			<li class="splide__slide">
+				<img src="{% static 'ひまわり.jpg' %}" alt="">
+			</li>
+			<li class="splide__slide">
+				<img src="{% static '海岸.jpg' %}" alt="">
+			</li>
+			<li class="splide__slide">
+				<img src="{% static 'windows.jpg' %}" alt="">
+			</li>
+      <li class="splide__slide">
+				<img src="{% static 'テキスト.png' %}" alt="">
+			</li>
+		</ul>
+  </div>
+</section>
+<div class="pt-3" style="padding-left: 2rem; padding-right: 2rem;">
 <!-- スライダー -->
 <!-- ランキング -->
   <div>
@@ -25,14 +38,14 @@
   </div>
 <!-- ランキング終了 -->
 <!-- アップロードコンテンツ -->
-<h1>【アップロードコンテンツ】</h1>
+【アップロードコンテンツ】
 <ul class="m-0 p-0" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
     {% for document in files %} 
     <li class="p-0 pb-3 mb-3" style="list-style: none; width: fit-content; height: 16rem;">
       <a
         href="{{ document.id }}"
         class="card card-fix"
-        style="width: 20rem; text-decoration: none; color: black; height: 16rem; overflow: hidden"
+        style="width: 100%; text-decoration: none; color: black; height: 16rem; overflow: hidden"
       >
         {% if document.content_type == "video/mp4" %}
         <video control autoplay muted style="width: 100%; height: 70%; background-color: black;">
@@ -65,16 +78,26 @@
   </ul>
 <!-- アップロードコンテンツ終了 -->
 <!-- スライダー用JS -->
-  <script>
-    $('.slider').slick({
-        autoplay: true,       //自動再生
-        autoplaySpeed: 2000,  //自動再生のスピード
-        speed: 800,           //スライドするスピード
-        dots: true,           //スライド下のドット
-        arrows: true,         //左右の矢印
-        infinite: true,       //永久にループさせる
-        centerMode: true
-    });
+<script>
+document.addEventListener( 'DOMContentLoaded', function () {
+  new Splide( '#image-carousel', {
+    heightRatio: 0.2,
+    type: 'loop',
+    perPage: 1,
+    gap: ' 1rem',
+    padding: '10rem',
+    breakpoints: {
+			640: {
+        cover: true,
+        heightRatio: 0.3,
+				perPage: 1,
+        padding: 0,
+        gap: 0,
+			},
+		},
+  } ).mount();
+} );
 </script>
 <!-- スライダー用JS終了 -->
+</div>
 {% endblock %}
