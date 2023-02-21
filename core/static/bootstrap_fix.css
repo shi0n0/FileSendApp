@@ -266,3 +266,26 @@ main{
   border-radius: 1rem;
   
 }
+.header-tag{
+  position: relative;
+  overflow-x:scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding: 0.5rem;
+  border-radius: 10rem;
+
+}
+.box::-webkit-scrollbar {
+  display:none;
+}
+
+.header-tags{
+  text-decoration: none;
+  list-style: none;
+  color: black;
+  background-color: #eaeaea;
+  padding: 0.5rem;
+  border-radius: 10rem;
+  margin-left: 0.3rem;
+  margin-right: 0.3rem;
+}
