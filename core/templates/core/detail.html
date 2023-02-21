@@ -60,25 +60,29 @@
       <div class="description">
         <p class="m-0">{{ detail.description }}</p>
       </div>
+  <div class="comment-all">
+    <h2 class="ms-2">コメント</h2>
 
-
-
-      <form method="post" action="{{detail.id}}/comment/">
+      <form method="post" class="comment-form" action="{{detail.id}}/comment/">
         {% csrf_token %}
         <div>
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name">
+          <i class="bi bi-person-circle comment-input-icon"></i> 
         </div>
-        <div>
-          <label for="body">Comment:</label>
-          <input id="body" name="body">
+        <div class="pe-2 ps-2" style="width: 100%;">
+          <div>
+            <input class="comment-input" type="text" id="name" name="name" placeholder="任意の名前(省略可)  -  省略の場合「None」になります">
+          </div>
+          <div>
+            <input class="comment-input" id="body" name="body" placeholder="コメントを入力(必須)  -  煽りや暴言はお控えください">
+          </div>
         </div>
-        <button type="submit" value="Submit">Submit</button>
+        <button class="comment-submit" type="submit" value="Submit">投稿</button>
       </form>
 
 
       <div class="comment-field">
-      {% for comment in comments %}
+        <h3 class="pb-3">新着順</h3>
+      {% for comment in comments reversed%}
       <div class="comment-profile">
         <i class="bi bi-person-circle" style="font-size: 3rem; padding-right: 1rem; display: flex; align-items: flex-start;"></i>
         <div>
@@ -97,6 +101,7 @@
         comments = Comment.objects.filter(document=document)
         </script>
     </div>
+  </div>
 </div>
 <div class="free-space">
   <div>フリースペース</div>
