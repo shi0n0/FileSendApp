@@ -74,13 +74,22 @@
                 {% endif %}
         
                 {% for post in post_data %}
-                <div class="result">
-                    <a href="{{post.id}}">
-                        <p>{{ post.id }}</p>
-                        <p>{{ post.title }}</p>
-                        <p>{{ post.file_name }}</p>
-                    </a>
+                <a class="result" href="{{ post.id }}">
+                <div class="card mb-3">
+                  <div class="row g-0">
+                    <div class="col-5 col-sm-3 flex" style="height:auto">
+                      <video src="media/{{ post.uploadedFile }}" class="img-fluid w-100" alt="card-horizontal-image" style="border-radius: 0.2rem;">
+                    </div>
+                    <div class="col-7 col-sm-8">
+                      <div class="card-body">
+                        <h4 class="card-title mb-0">{{ post.title }}</h4>
+                        <p class="card-text"><small class="text-muted">再生数:{{ post.view_count }}回</small></p>
+                        <p class="card-text">{{ post.description }}</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </a>
                 {% endfor %}
 <!-- 検索結果表示終了 -->
 

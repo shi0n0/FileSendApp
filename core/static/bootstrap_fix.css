@@ -232,6 +232,7 @@ main{
 
 .comment-field{
   padding: 1rem;
+  padding-bottom: 0;
   background-color: #ecececb3;
   border-radius: 1rem;
   margin-top: 1rem;
@@ -339,4 +340,9 @@ main{
   border-radius: 10rem;
   margin-left: 0.3rem;
   margin-right: 0.3rem;
+}
+
+.result{
+  text-decoration: none;
+  color: #333;
 }
