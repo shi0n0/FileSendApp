@@ -57,20 +57,20 @@
   
 </div>
 <!-- ランキング終了 -->
-<div class="pt-3" style="padding-left: 2rem; padding-right: 2rem;">
+<div class="pt-3 top-main-container">
 <!-- スライダー -->
 <!-- アップロードコンテンツ -->
 【アップロードコンテンツ】
-<ul class="m-0 p-0" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
+<ul class="m-0 p-0 card-ul" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-between;">
     {% for document in files %} 
-    <li class="p-0 pb-3 mb-3" style="list-style: none; width: fit-content; height: 16rem;">
+    <li class="p-0 pb-3 mb-3 card-li">
       <a
         href="{{ document.id }}"
         class="card card-fix"
         style="width: 100%; text-decoration: none; color: black; height: 16rem; overflow: hidden"
       >
         {% if document.content_type == "video/mp4" %}
-        <video control autoplay muted style="width: 100%; height: 70%; background-color: black;">
+        <video control autoplay muted class="top-video">
           <source
             alt="カードの動画"
             src="{{ document.uploadedFile.url }}#t=10"
