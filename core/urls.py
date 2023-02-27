@@ -18,7 +18,7 @@ urlpatterns = [
     path("<int:id>", views.DetailView.id_view, name="detail"),
     path('<int:id>/comment/', views.CommentCreateView.as_view(), name='comment_create'),
     path('edit_profile/', views.edit_profile, name='edit_profile'),
-    path('ranking', views.document_list, name='ranking'),
+    path('ranking', views.DetailView.document_list, name='ranking'),
 
 ]
 if settings.DEBUG:

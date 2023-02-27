@@ -1,8 +1,24 @@
 {% extends 'base.html' %} 
 {% block content %}
-<ul>
+{% load static %}
+
+<ul class="box" style="display: flex; overflow-y: scroll;padding-top: 1rem;">
     {% for document in documents %}
-      <li>{{ document.title }} (views: {{ document.view_count }})</li>
+      <li style="list-style: none;">
+        <a href="{{ document.id }}" style="text-decoration: none; color: black;" >
+          <div class="card ranking-card" style="width: 18rem;">
+            <img class="card-img-top" src="{% static 'ひまわり.jpg' %}" alt="カードの画像">
+            <div style="position: absolute; padding: 1rem; background-color: rgba(255, 255, 255, 0.2); color: aliceblue;"><h1>{{ forloop.counter }}</h1></div>
+
+            <div class="card-body">
+              <h5 class="card-title">{{ document.title }}</h5>
+              <p class="card-text">{{ document.view_count }} 回再生</p>
+              <p class="card-text">{{ document.description }}</p>
+              <p class="card-text"><small class="text-muted">{{ document.dateTimeOfUpload }}</small></p>
+            </div>
+          </div>
+        </a>
+      </li>
     {% endfor %}
 </ul>
 {% endblock %}

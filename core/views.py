@@ -67,9 +67,6 @@ def uploadFile(request):
         "files": documents
     })
 
-def document_list(request):
-    documents = Document.objects.all().order_by('-view_count')
-    return render(request, 'core/ranking.html', {'documents':documents})
 
 def delete_file(request,pk):
     template_name = "core/file-delete.html"
@@ -165,6 +162,10 @@ class DetailView(View):
         comments = Comment.objects.filter(document=detail)
 
         return render(request, 'core/detail.html', {'detail': detail, 'file_type': file_type, 'comments': comments})
+    
+    def document_list(request):
+        documents = Document.objects.all().order_by('-view_count')[:10]
+        return render(request, 'core/ranking.html', {'documents':documents})
 
 
 class CommentCreateView(CreateView):

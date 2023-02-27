@@ -1,44 +1,67 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <!-- wrapper -->
 
 <!-- コンテンツ表示 -->
-<div class="two-column-wrapper" style="display: flex; width: 100%;">
-<div class="detail-wrapper" style="width: 75%; padding-right: 1.5rem;">
+<div class="two-column-wrapper" style="display: flex; width: 100%">
+  <div class="detail-wrapper" style="width: 75%; padding-right: 1.5rem">
     <div class="detail">
       {% if file_type == 'image' %}
-        <img class="img-fluid" src="media/{{ detail.uploadedFile }}" alt="{{ detail.title }}"/>
+      <img
+        class="img-fluid"
+        src="media/{{ detail.uploadedFile }}"
+        alt="{{ detail.title }}"
+      />
 
       {% elif file_type == 'video' %}
-        <div class="ratio ratio-16x9 video-detail p-0 m-0 bg-black" style="width: 100%; display: flex; justify-content: center;">
-          <video class="video-js" id="video" preload="auto" autoplay data-setup={} controls playsinline>
-            <source src="media/{{ detail.uploadedFile }}#t=0.001" type="video/mp4">
-            <p class="vjs-no-js">
-              ブラウザが古いか不正な操作のため表示できません
-            </p>
-          </video>
-        </div>
-
+      <div
+        class="ratio ratio-16x9 video-detail p-0 m-0 bg-black"
+        style="width: 100%; display: flex; justify-content: center"
+      >
+        <video
+          class="video-js"
+          id="video"
+          preload="auto"
+          autoplay
+          data-setup="{}"
+          controls
+          playsinline
+        >
+          <source
+            src="media/{{ detail.uploadedFile }}#t=0.001"
+            type="video/mp4"
+          />
+          <p class="vjs-no-js">
+            ブラウザが古いか不正な操作のため表示できません
+          </p>
+        </video>
+      </div>
 
       {% elif file_type == 'text' %}
-        <div class="text-detail" style="background-color: #00540033;">{{ detail.uploadedFile.read.decode}}
-        </div>
+      <div class="text-detail" style="background-color: #00540033">
+        {{ detail.uploadedFile.read.decode}}
+      </div>
 
       {% endif %}
 
-<!-- コンテンツ詳細 -->
+      <!-- コンテンツ詳細 -->
       <div class="file-name-date">
-
         <div>
           <h1 style="font-weight: 700">{{detail.file_name}}</h1>
         </div>
-        <div style="display: flex; justify-content: space-between; ">
-          <p style="opacity: 0.6">{{detail.dateTimeOfUpload}}
-          再生数:{{ detail.view_count }}回</p>
-          <div style="display: flex; justify-content: space-between; font-size: 1.1rem;">
+        <div style="display: flex; justify-content: space-between">
+          <p style="opacity: 0.6">
+            {{detail.dateTimeOfUpload}} 再生数:{{ detail.view_count }}回
+          </p>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              font-size: 1.1rem;
+            "
+          >
             <p>#{{detail.tag1}} #{{detail.tag2}} #{{detail.tag3}}</p>
           </div>
-          <div style="display: flex;">
+          <div style="display: flex">
             <div class="thumbs detail-child">
               <label class="thumbs-up">
                 <input type="radio" name="thumb up" id="btn" />
@@ -47,83 +70,130 @@
                 <i class="fa-regular fa-thumbs-down fa-2x"></i>
               </label>
             </div>
-            <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-size="large" data-text="あなたの隠れ家:KAKUREGA" data-url="https://github.com/shi0n0/FileSendApp" data-via="KAKUREGA" data-hashtags="KAKUREGA" data-dnt="true" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          <div class="detail-child">
-              <input id="CopyTarget" value="{{ request.build_absolute_uri }}" type="hidden">
-              <a type="button" onclick="CopyToClipboard()" title="リンクをコピー">
+            <a
+              href="https://twitter.com/share?ref_src=twsrc%5Etfw"
+              class="twitter-share-button"
+              data-size="large"
+              data-text="あなたの隠れ家:KAKUREGA"
+              data-url="https://github.com/shi0n0/FileSendApp"
+              data-via="KAKUREGA"
+              data-hashtags="KAKUREGA"
+              data-dnt="true"
+              data-show-count="false"
+              >Tweet</a
+            >
+            <script
+              async
+              src="https://platform.twitter.com/widgets.js"
+              charset="utf-8"
+            ></script>
+            <div class="detail-child">
+              <input
+                id="CopyTarget"
+                value="{{ request.build_absolute_uri }}"
+                type="hidden"
+              />
+              <a
+                type="button"
+                onclick="CopyToClipboard()"
+                title="リンクをコピー"
+              >
                 <i class="bi bi-share"></i>共有
               </a>
-          </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="description">
         <p class="m-0">{{ detail.description }}</p>
       </div>
-  <div class="comment-all">
-    <h2 class="ms-2">コメント</h2>
+      <div class="comment-all">
+        <h2 class="ms-2">コメント</h2>
 
-      <form method="post" class="comment-form" action="{{detail.id}}/comment/">
-        {% csrf_token %}
-        <div>
-          <i class="bi bi-person-circle comment-input-icon"></i> 
-        </div>
-        <div class="pe-2 ps-2" style="width: 100%;">
+        <form
+          method="post"
+          class="comment-form"
+          action="{{detail.id}}/comment/"
+        >
+          {% csrf_token %}
           <div>
-            <input class="comment-input" type="text" id="name" name="name" placeholder="任意の名前(省略可)  -  省略の場合「None」になります">
+            <i class="bi bi-person-circle comment-input-icon"></i>
           </div>
-          <div>
-            <input class="comment-input" id="body" name="body" placeholder="コメントを入力(必須)  -  煽りや暴言はお控えください">
+          <div class="pe-2 ps-2" style="width: 100%">
+            <div>
+              <input
+                class="comment-input"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="任意の名前(省略可)  -  省略の場合「None」になります"
+              />
+            </div>
+            <div>
+              <input
+                class="comment-input"
+                id="body"
+                name="body"
+                placeholder="コメントを入力(必須)  -  煽りや暴言はお控えください"
+              />
+            </div>
           </div>
-        </div>
-        <button class="comment-submit" type="submit" value="Submit">投稿</button>
-      </form>
+          <button class="comment-submit" type="submit" value="Submit">
+            投稿
+          </button>
+        </form>
 
-
-      <div class="comment-field">
-        <h3 class="pb-3">新着順</h3>
-      {% for comment in comments reversed%}
-      <div class="comment-profile">
-        <i class="bi bi-person-circle" style="font-size: 3rem; padding-right: 1rem; display: flex; align-items: flex-start;"></i>
-        <div>
-          <div>
-            <p class="comment-name">{{ comment.name }}</p>
+        <div class="comment-field">
+          <h3 class="pb-3">新着順</h3>
+          {% for comment in comments reversed%}
+          <div class="comment-profile">
+            <i
+              class="bi bi-person-circle"
+              style="
+                font-size: 3rem;
+                padding-right: 1rem;
+                display: flex;
+                align-items: flex-start;
+              "
+            ></i>
+            <div>
+              <div>
+                <p class="comment-name">{{ comment.name }}</p>
+              </div>
+              <div>
+                <p class="comment-body">{{ comment.body }}</p>
+                <p class="comment-created_at">{{ comment.created_at }}</p>
+              </div>
+            </div>
           </div>
-          <div>
-            <p class="comment-body">{{ comment.body }}</p>
-            <p class="comment-created_at">{{ comment.created_at }}</p>
-          </div>
+          {% endfor %}
         </div>
-      </div>
-      {% endfor %}
-      </div>
         <script>
-        comments = Comment.objects.filter(document=document)
+          comments = Comment.objects.filter((document = document));
         </script>
+      </div>
     </div>
   </div>
-</div>
-<div class="free-space">
-  <div>フリースペース</div>
-</div> 
+  <div class="free-space">
+    <div>フリースペース</div>
+  </div>
 
-<!-- コピーボタン -->
-<script>
-  function CopyToClipboard() {
+  <!-- コピーボタン -->
+  <script>
+    function CopyToClipboard() {
       // コピー対象のエレメントを格納する変数を定義する
       var copyTarget = document.getElementById("CopyTarget");
-      
+
       // コピー対象のテキストを選択する
       copyTarget.select();
-      
+
       // 選択しているテキストをクリップボードにコピーする
       document.execCommand("Copy");
-      
+
       // コピーが完了したことをユーザーにお知らせする
       alert("コピーしました：" + copyTarget.value);
-  }
-</script>
-
+    }
+  </script>
 </div>
 
 {% endblock %}

@@ -404,3 +404,27 @@ main{
 .result-card{
   height: auto;
 }
+
+
+
+.ranking-card{
+  position:relative;
+  top:0!important;
+  transition:0.3s!important;
+  filter:grayscale(80%)!important;
+}
+
+.ranking-card:hover{
+	filter:grayscale(0)!important;
+}
+.card{
+  position: relative!important;
+  top: 0!important;
+  transition: 0.3s!important;
+}
+
+.card:hover{
+  top:-5px!important;
+}
+
+
