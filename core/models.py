@@ -8,6 +8,8 @@ from django.utils import timezone
 from django.contrib.auth.validators import UnicodeUsernameValidator
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 # Create your models here.
 
@@ -15,7 +17,7 @@ from imagekit.processors import ResizeToFill
 
 class Document(models.Model):
     id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length = 30)
+    title = models.CharField(max_length = 30 , default="No Title" ,  blank=True , null=True)
     uploadedFile = models.FileField(max_length = 100 , upload_to = "UploadedFiles/")
     dateTimeOfUpload = models.DateTimeField(auto_now = True)
     content_type = models.CharField(max_length=255,default="", blank=True, null=True)
@@ -28,6 +30,14 @@ class Document(models.Model):
 
     def file_name(self): #ファイル名の抽出
         return os.path.basename(self.uploadedFile.name)
+    
+    def __str__(self):
+        return self.title or "No Title"
+    
+@receiver(pre_save, sender=Document)
+def set__title(sender, instance, **kwargs):
+        if not instance.title:
+            instance.title = "No Title"
     
 class Comment(models.Model):
     name = models.CharField(max_length=50, default="名無しさん", blank=True, null=True)
